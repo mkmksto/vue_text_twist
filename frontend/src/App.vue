@@ -2,10 +2,14 @@
 import CurrentWord from './components/CurrentWord.vue'
 import GameControls from './components/GameControls.vue'
 import Header from './components/Header.vue'
+import GameLostModal from './components/modals/GameLostModal.vue'
+import SettingsModal from './components/modals/SettingsModal.vue'
 import Subwords from './components/SubWords.vue'
 </script>
 
 <template>
+    <SettingsModal v-if="false" />
+    <GameLostModal v-if="false" />
     <Header />
     <main>
         <Subwords />
@@ -19,6 +23,10 @@ import Subwords from './components/SubWords.vue'
     --card-width: 500px;
     /* --card-width: 1000px; */
     --card-height: 400px;
+}
+
+button {
+    @apply rounded-lg;
 }
 </style>
 
