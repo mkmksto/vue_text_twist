@@ -1,8 +1,9 @@
 import random
 
-import json_utils
 import requests
 from bs4 import BeautifulSoup
+
+from . import json_utils
 
 
 class EnglishDict:
