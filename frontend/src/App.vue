@@ -14,10 +14,16 @@ import Subwords from './components/SubWords.vue'
     </main>
 </template>
 
+<style>
+:root {
+    --card-width: 500px;
+    /* --card-width: 1000px; */
+    --card-height: 400px;
+}
+</style>
+
 <style scoped>
 main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    @apply flex flex-col items-center justify-center h-screen;
 }
 </style>
