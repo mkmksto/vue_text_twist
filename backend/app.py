@@ -35,7 +35,6 @@ def get_random_word():
     Returns:
         dict: {'word': random_word, 'sub_words': sub_words}
     """
-    return 'random word'
 
     params = {}
     # params: dict = request.json
@@ -47,8 +46,8 @@ def get_random_word():
     max_subwords = params.get('max_subwords', 20)
 
     while True:
-        and_word = dict_instance.get_random_word()
-        frequency = dict_instance.get_frequency(rand_word)
+        rand_word = eng_dict.get_random_word()
+        frequency = eng_dict.get_frequency(rand_word)
         if (
             len(rand_word) < max_chars
             and len(rand_word) > min_chars
@@ -56,7 +55,7 @@ def get_random_word():
         ):
             break
 
-        sub_words = dict_instance.get_subwords(rand_word, max_num=max_subwords)
+        sub_words = eng_dict.get_subwords(rand_word, max_num=max_subwords)
         sub_words.insert(0, rand_word)
         sub_words = [
             {'sub_word': sub_word, 'id': str(uuid.uuid4()), 'has_been_guessed': False}
@@ -70,12 +69,12 @@ def get_random_word():
         ]
         random.shuffle(shuffled_word)
 
-        return 'helllooo'
-        # return {
-        #     'word': rand_word,
-        #     'sub_words': sub_words,
-        #     'shuffled_word': shuffled_word,
-        # }
+        # return 'helllooo'
+        return {
+            'word': rand_word,
+            'sub_words': sub_words,
+            'shuffled_word': shuffled_word,
+        }
 
 
 if __name__ == '__main__':
