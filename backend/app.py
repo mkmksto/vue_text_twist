@@ -53,26 +53,26 @@ def get_random_word():
         ):
             break
 
-        sub_words = eng_dict.get_subwords(rand_word, max_num=max_subwords)
-        sub_words.insert(0, rand_word)
-        sub_words = [
-            {'sub_word': sub_word, 'id': str(uuid.uuid4()), 'has_been_guessed': False}
-            for sub_word in sub_words
-        ]
+    sub_words = eng_dict.get_subwords(rand_word, max_num=max_subwords)
+    sub_words.insert(0, rand_word)
+    sub_words = [
+        {'sub_word': sub_word, 'id': str(uuid.uuid4()), 'has_been_guessed': False}
+        for sub_word in sub_words
+    ]
 
-        shuffled_word = list(rand_word)
-        shuffled_word = [
-            {'letter': letter, 'id': str(uuid.uuid4()), 'letter_transferred': False}
-            for letter in shuffled_word
-        ]
-        random.shuffle(shuffled_word)
+    shuffled_word = list(rand_word)
+    shuffled_word = [
+        {'letter': letter, 'id': str(uuid.uuid4()), 'letter_transferred': False}
+        for letter in shuffled_word
+    ]
+    random.shuffle(shuffled_word)
 
-        # print(sub_words)
-        return {
-            'word': rand_word,
-            'sub_words': sub_words,
-            'shuffled_word': shuffled_word,
-        }
+    # print(sub_words)
+    return {
+        'word': rand_word,
+        'sub_words': sub_words,
+        'shuffled_word': shuffled_word,
+    }
 
 
 if __name__ == '__main__':
