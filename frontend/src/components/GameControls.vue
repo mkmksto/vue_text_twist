@@ -7,13 +7,10 @@ const randomWordStore = useCurRandomWord()
 const { currentRandomWord } = storeToRefs(randomWordStore)
 
 function shuffle() {
-    console.log('everyday im shufflin')
     const curShuffledWord = currentRandomWord.value.shuffled_word
     const shuffledWordArr = Array.from(curShuffledWord)
     const newArr = shuffleItems(shuffledWordArr)
-    // randomWordStore.$patch({
-    //     currentRandomWord: newArr,
-    // })
+
     randomWordStore.$patch((state) => {
         state.currentRandomWord.shuffled_word = newArr
     })
