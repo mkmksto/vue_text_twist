@@ -7,15 +7,26 @@ const randomWordStore = useCurRandomWord()
 const { currentRandomWord } = storeToRefs(randomWordStore)
 
 const currentGuessStore = useCurrentGuessStore()
-const { currentGuess, addToCurrentGuess, sayHello } = storeToRefs(currentGuessStore)
+const { currentGuess } = storeToRefs(currentGuessStore)
+const { addToGuess } = currentGuessStore
 
 function moveLetter(letterId) {
-    /** @type {Object} */
     const clickedLetter = currentRandomWord.value.shuffled_word.find(
         (letter) => letter.id === letterId
     )
-    clickedLetter.letter_transferred = true
-    sayHello()
+    clickedLetter.letter_transferred = !clickedLetter.letter_transferred
+}
+
+function updateGuessStore(letter, letterId) {
+    const clickedLetterObj = currentRandomWord.value.shuffled_word.find(
+        (letter) => letter.id === letterId
+    )
+    console.log(clickedLetterObj)
+}
+
+function onLetterClicked(letter, letterId) {
+    moveLetter(letterId)
+    updateGuessStore(letter, letterId)
 }
 </script>
 
@@ -27,6 +38,7 @@ function moveLetter(letterId) {
             )"
             :key="id"
             :v-if="!letter_transferred"
+            @click="onLetterClicked(letter, id)"
             class="cell letter-cell"
         >
             <span v-if="letter_transferred">{{ letter }}</span>
@@ -40,7 +52,9 @@ function moveLetter(letterId) {
             :v-if="letter_transferred"
             class="cell letter-cell"
         >
-            <span v-if="!letter_transferred" @click="moveLetter(id)">{{ letter }}</span>
+            <span v-if="!letter_transferred" @click="onLetterClicked(letter, id)">{{
+                letter
+            }}</span>
         </div>
     </div>
 </template>
