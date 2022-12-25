@@ -1,10 +1,29 @@
 <script setup>
-//
+import { storeToRefs } from 'pinia'
+import { shuffleItems } from '../functions/math'
+import { useCurRandomWord } from '../stores/currentRandomWord'
+
+const randomWordStore = useCurRandomWord()
+const { currentRandomWord } = storeToRefs(randomWordStore)
+
+function shuffle() {
+    console.log('everyday im shufflin')
+    const curShuffledWord = currentRandomWord.value.shuffled_word
+    const shuffledWordArr = Array.from(curShuffledWord)
+    const newArr = shuffleItems(shuffledWordArr)
+    // randomWordStore.$patch({
+    //     currentRandomWord: newArr,
+    // })
+    randomWordStore.$patch((state) => {
+        state.currentRandomWord.shuffled_word = newArr
+    })
+    console.log(currentRandomWord.value.shuffled_word)
+}
 </script>
 
 <template>
     <div class="controls">
-        <button class="btn">Twist</button>
+        <button class="btn" @click="shuffle">Twist</button>
         <button class="btn">Give Up</button>
         <button class="btn">Clear</button>
         <button class="btn">Enter</button>
