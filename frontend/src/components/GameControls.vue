@@ -14,7 +14,6 @@ function shuffle() {
     randomWordStore.$patch((state) => {
         state.currentRandomWord.shuffled_word = newArr
     })
-    console.log(currentRandomWord.value.shuffled_word)
 }
 </script>
 
