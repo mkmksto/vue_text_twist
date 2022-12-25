@@ -7,7 +7,6 @@ const randomWordStore = useCurRandomWord()
 const { currentRandomWord } = storeToRefs(randomWordStore)
 
 const currentGuessStore = useCurrentGuessStore()
-const { currentGuess } = storeToRefs(currentGuessStore)
 const { addLetterToGuess, removeLetterFromGuess } = currentGuessStore
 
 function moveLetter(letterId) {
