@@ -10,6 +10,9 @@ import { useSettingsModal } from './stores/modalVisibility'
 
 const store = useSettingsModal()
 const { isSettingsModalVisible } = storeToRefs(store)
+
+// const settingsStore = useSettingsStore()
+// const { gameSettings } = storeToRefs(settingsStore)
 </script>
 
 <template>

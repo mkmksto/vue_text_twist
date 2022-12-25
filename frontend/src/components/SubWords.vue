@@ -1,12 +1,39 @@
 <script setup>
-//
+import { storeToRefs } from 'pinia'
+import { onMounted } from 'vue'
+import { fetchBackendWord } from '../functions/dataFetching'
+import { useCurRandomWord } from '../stores/currentRandomWord'
+import { useSettingsStore } from '../stores/gameSettings'
+
+const settingStore = useSettingsStore()
+const { gameSettings } = storeToRefs(settingStore)
+
+const randomWordStore = useCurRandomWord()
+const { currentRandomWord } = storeToRefs(randomWordStore)
+
+onMounted(async () => {
+    const backend_resp = await fetchBackendWord(gameSettings.value)
+
+    randomWordStore.$patch({
+        currentRandomWord: {
+            shuffled_word: backend_resp.shuffled_word,
+            sub_words: backend_resp.sub_words,
+            word: backend_resp.word,
+        },
+    })
+    console.log(currentRandomWord.value.sub_words)
+})
 </script>
 
 <template>
     <div class="card">
         <div class="word-columns">
-            <div v-for="_ in 10" class="word">
-                <div v-for="_ in 4" class="letter-cell">A</div>
+            <div
+                v-for="{ sub_word, id, has_been_guessed } in currentRandomWord.sub_words"
+                class="word"
+                :key="id"
+            >
+                <div v-for="letter in sub_word" class="letter-cell">{{ letter }}</div>
             </div>
         </div>
     </div>

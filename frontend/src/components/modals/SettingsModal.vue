@@ -3,13 +3,14 @@ import { storeToRefs } from 'pinia'
 import { useSettingsStore } from '../../stores/gameSettings'
 import { useSettingsModal } from '../../stores/modalVisibility'
 
-const store = useSettingsStore()
-const { gameSettings } = storeToRefs(store)
+const settingsStore = useSettingsStore()
+const { gameSettings } = storeToRefs(settingsStore)
 
 const { hideSettingsModal } = useSettingsModal()
-function logUpdated() {
-    console.log(gameSettings.value)
-}
+
+// function logUpdated() {
+//     console.log(gameSettings.value)
+// }
 </script>
 
 <template>
@@ -21,7 +22,6 @@ function logUpdated() {
                 <input
                     type="range"
                     v-model="gameSettings.min_chars"
-                    @input="logUpdated"
                     min="6"
                     max="10"
                     class="range"
@@ -88,7 +88,7 @@ function logUpdated() {
                 <span class="label-val">{{ gameSettings.timer }}</span>
             </div>
 
-            <button class="save">Save but don't Restart</button>
+            <button class="save" @click="hideSettingsModal">Save but don't Restart</button>
             <button class="restart">Save and Restart</button>
         </div>
     </div>
@@ -96,7 +96,7 @@ function logUpdated() {
 
 <style scoped>
 button {
-    @apply cursor-pointer mt-auto;
+    @apply cursor-pointer mt-auto p-2;
 }
 .save {
     @apply bg-neutral-200 text-neutral-600 hover:bg-neutral-300;

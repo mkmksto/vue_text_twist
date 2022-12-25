@@ -22,10 +22,8 @@ def index():
     # return render_template('index.html')
 
 
-@app.route(
-    '/api/random_word',
-)
-# @cross_origin(origins=['http://127.0.0.1:5173', 'http://localhost:5173'])
+@app.route('/api/random_word', methods=['POST'])
+@cross_origin(origins=['http://127.0.0.1:5173', 'http://localhost:5173'])
 def get_random_word():
     """Get a random word and its corresponding subwords
     in python dict format
@@ -69,7 +67,7 @@ def get_random_word():
         ]
         random.shuffle(shuffled_word)
 
-        # return 'helllooo'
+        # print(sub_words)
         return {
             'word': rand_word,
             'sub_words': sub_words,
