@@ -1,41 +1,91 @@
 <script setup>
+import { storeToRefs } from 'pinia'
 import { useSettingsStore } from '../../stores/gameSettings'
+import { useSettingsModal } from '../../stores/modalVisibility'
 
-const { gameSettings } = useSettingsStore()
-console.log(gameSettings)
+const store = useSettingsStore()
+const { gameSettings } = storeToRefs(store)
+
+const { hideSettingsModal } = useSettingsModal()
+function logUpdated() {
+    console.log(gameSettings.value)
+}
 </script>
 
 <template>
-    <div class="modal">
+    <div @click.self="hideSettingsModal" class="modal">
         <div class="modal-card">
             <div class="setting">
                 <label for="min-chars">Min Number of Characters</label>
-                <input type="range" />
-                <span class="label-val">2</span>
+
+                <input
+                    type="range"
+                    v-model="gameSettings.min_chars"
+                    @input="logUpdated"
+                    min="6"
+                    max="10"
+                    class="range"
+                    id="min-chars"
+                />
+
+                <span class="label-val">{{ gameSettings.min_chars }}</span>
             </div>
+
             <div class="setting">
-                <label for="max-chars">Max Number of Characters</label> <input type="range" />
-                <span class="label-val">2</span>
+                <label for="max-chars">Max Number of Characters</label>
+
+                <input
+                    type="range"
+                    v-model="gameSettings.max_chars"
+                    min="9"
+                    max="13"
+                    class="range"
+                    id="max-chars"
+                />
+
+                <span class="label-val">{{ gameSettings.max_chars }}</span>
             </div>
+
             <div class="setting">
                 <label for="difficulty">Difficulty</label>
-                <select id="difficulty">
+                <select
+                    id="difficulty"
+                    class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg block w-40 p-1.5 ml-auto"
+                    v-model="gameSettings.difficulty"
+                >
+                    <option selected>Medium</option>
                     <option value="easy">Easy</option>
                     <option value="medium">Medium</option>
                     <option value="hard">Hard</option>
                     <option value="very_hard">Very Hard</option>
                 </select>
-                <span class="label-val">2</span>
+                <!-- <span class="label-val">2</span> -->
             </div>
-            <div class="setting">
-                <label for="timer">Alloted Time</label>
-                <input type="range" />
-                <span class="label-val">200</span>
-            </div>
+
             <div class="setting">
                 <label for="max-subwords">Max Number of Subwords</label>
-                <input type="range" />
-                <span class="label-val">2</span>
+                <input
+                    type="range"
+                    v-model="gameSettings.max_subwords"
+                    min="10"
+                    max="30"
+                    class="range"
+                    id="max-subwords"
+                />
+                <span class="label-val">{{ gameSettings.max_subwords }}</span>
+            </div>
+
+            <div class="setting">
+                <label for="timer">Alloted Time</label>
+                <input
+                    type="range"
+                    v-model="gameSettings.timer"
+                    min="30"
+                    max="300"
+                    class="range"
+                    id="timer"
+                />
+                <span class="label-val">{{ gameSettings.timer }}</span>
             </div>
 
             <button class="save">Save but don't Restart</button>
