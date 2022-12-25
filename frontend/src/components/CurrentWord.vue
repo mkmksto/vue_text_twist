@@ -1,14 +1,32 @@
 <script setup>
-//
+import { storeToRefs } from 'pinia'
+import { useCurRandomWord } from '../stores/currentRandomWord'
+
+const randomWordStore = useCurRandomWord()
+const { currentRandomWord } = storeToRefs(randomWordStore)
 </script>
 
 <template>
     <div class="letter-upper-row letter">
-        <div v-for="_ in 5" class="cell letter-cell">X</div>
+        <div
+            v-for="{ letter, id, letter_transferred } in currentRandomWord.shuffled_word"
+            :key="id"
+            :v-if="!letter_transferred"
+            class="cell letter-cell"
+        >
+            <span v-if="letter_transferred">{{ letter }}</span>
+        </div>
     </div>
 
     <div class="letter-lower-row letter">
-        <div v-for="_ in 5" class="cell letter-cell">B</div>
+        <div
+            v-for="{ letter, id, letter_transferred } in currentRandomWord.shuffled_word"
+            :key="id"
+            :v-if="letter_transferred"
+            class="cell letter-cell"
+        >
+            <span v-if="!letter_transferred">{{ letter }}</span>
+        </div>
     </div>
 </template>
 
