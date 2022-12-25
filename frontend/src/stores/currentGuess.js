@@ -4,9 +4,13 @@ import { ref } from 'vue'
 export const useCurrentGuessStore = defineStore('currentGuessStore', () => {
     const currentGuess = ref([])
 
-    function addToGuess(letter, letterId) {
-        console.log(letter, letterId)
+    function addLetterToGuess(letter, letterId) {
+        console.log('adding letter')
     }
 
-    return { currentGuess, addToGuess }
+    function removeLetterFromGuess(letter, letterId) {
+        console.log('removing letter')
+    }
+
+    return { currentGuess, addLetterToGuess, removeLetterFromGuess }
 })

@@ -8,7 +8,7 @@ const { currentRandomWord } = storeToRefs(randomWordStore)
 
 const currentGuessStore = useCurrentGuessStore()
 const { currentGuess } = storeToRefs(currentGuessStore)
-const { addToGuess } = currentGuessStore
+const { addLetterToGuess, removeLetterFromGuess } = currentGuessStore
 
 function moveLetter(letterId) {
     const clickedLetter = currentRandomWord.value.shuffled_word.find(
@@ -21,7 +21,11 @@ function updateGuessStore(letter, letterId) {
     const clickedLetterObj = currentRandomWord.value.shuffled_word.find(
         (letter) => letter.id === letterId
     )
-    console.log(clickedLetterObj)
+    if (clickedLetterObj.letter_transferred) {
+        addLetterToGuess(letter, letterId)
+    } else {
+        removeLetterFromGuess(letter, letterId)
+    }
 }
 
 function onLetterClicked(letter, letterId) {
