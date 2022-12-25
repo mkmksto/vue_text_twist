@@ -21,7 +21,6 @@ onMounted(async () => {
             word: backend_resp.word,
         },
     })
-    console.log(currentRandomWord.value.sub_words)
 })
 </script>
 
