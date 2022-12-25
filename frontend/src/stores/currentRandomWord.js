@@ -8,5 +8,9 @@ export const useCurRandomWord = defineStore('curRandomWord', () => {
         word: [],
     })
 
-    return { currentRandomWord }
+    function unTransferLetters() {
+        currentRandomWord.shuffled_word.forEach((letter) => (letter.letter_transferred = false))
+    }
+
+    return { currentRandomWord, unTransferLetters }
 })

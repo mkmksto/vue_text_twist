@@ -1,10 +1,16 @@
 <script setup>
 import { storeToRefs } from 'pinia'
+import { nextTick } from 'vue'
 import { shuffleItems } from '../functions/math'
+import { useCurrentGuessStore } from '../stores/currentGuess'
 import { useCurRandomWord } from '../stores/currentRandomWord'
 
 const randomWordStore = useCurRandomWord()
 const { currentRandomWord } = storeToRefs(randomWordStore)
+const { unTransferLetters } = randomWordStore
+
+const currentGuessStore = useCurrentGuessStore()
+const { clearGuess } = currentGuessStore
 
 function shuffle() {
     const curShuffledWord = currentRandomWord.value.shuffled_word
@@ -15,13 +21,20 @@ function shuffle() {
         state.currentRandomWord.shuffled_word = newArr
     })
 }
+
+async function returnLettersToOriginalPlace() {
+    await nextTick()
+
+    unTransferLetters()
+    clearGuess()
+}
 </script>
 
 <template>
     <div class="controls">
         <button class="btn" @click="shuffle">Twist</button>
         <button class="btn">Give Up</button>
-        <button class="btn">Clear</button>
+        <button class="btn" @click="returnLettersToOriginalPlace">Clear</button>
         <button class="btn">Enter</button>
         <button class="btn">Reset Game</button>
         <button class="btn next-round-btn">Next Round</button>

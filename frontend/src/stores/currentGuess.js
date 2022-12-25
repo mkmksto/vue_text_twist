@@ -17,5 +17,9 @@ export const useCurrentGuessStore = defineStore('currentGuessStore', () => {
         if (idx > -1) currentGuess.value.splice(idx, 1)
     }
 
-    return { currentGuess, addLetterToGuess, removeLetterFromGuess }
+    function clearGuess() {
+        currentGuess.value = []
+    }
+
+    return { currentGuess, addLetterToGuess, removeLetterFromGuess, clearGuess }
 })
