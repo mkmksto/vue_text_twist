@@ -1,5 +1,8 @@
 <script setup>
-//
+import { useSettingsStore } from '../../stores/gameSettings'
+
+const { gameSettings } = useSettingsStore()
+console.log(gameSettings)
 </script>
 
 <template>
@@ -11,8 +14,7 @@
                 <span class="label-val">2</span>
             </div>
             <div class="setting">
-                <label for="max-chars">Max Number of Characters</label>
-                <input type="range" />
+                <label for="max-chars">Max Number of Characters</label> <input type="range" />
                 <span class="label-val">2</span>
             </div>
             <div class="setting">

@@ -1,5 +1,7 @@
 <script setup>
-//
+import { useSettingsModal } from '../stores/modalVisibility'
+
+const { isSettingsModalVisible, showSettingsModal, hideSettingsModal } = useSettingsModal()
 </script>
 
 <template>
@@ -17,7 +19,7 @@
                 >Round:
                 <li class="current-info">1</li></span
             >
-            <li class="icons">Settings</li>
+            <li @click="showSettingsModal" class="icons">Settings</li>
         </ul>
     </nav>
 </template>
