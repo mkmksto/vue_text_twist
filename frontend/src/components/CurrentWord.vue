@@ -24,8 +24,10 @@ function updateGuessStore(letter, letterId) {
     if (clickedLetterObj.letter_transferred) {
         addLetterToGuess(letter, letterId)
     } else {
-        removeLetterFromGuess(letter, letterId)
+        console.log('try remove letter from guess')
+        removeLetterFromGuess(letterId)
     }
+    console.log(currentGuess.value)
 }
 
 function onLetterClicked(letter, letterId) {
