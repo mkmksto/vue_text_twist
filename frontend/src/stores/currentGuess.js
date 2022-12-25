@@ -13,7 +13,6 @@ export const useCurrentGuessStore = defineStore('currentGuessStore', () => {
 
     function removeLetterFromGuess(letterId) {
         const idx = currentGuess.value.findIndex((l) => l.id === letterId)
-        console.log('idx to remove', idx)
 
         if (idx > -1) currentGuess.value.splice(idx, 1)
     }
