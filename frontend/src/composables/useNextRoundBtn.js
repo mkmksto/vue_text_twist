@@ -29,15 +29,18 @@ export async function useResetGame() {
     /** @type {HTMLElement} */
     const nextRoundBtn = window.document.querySelector('.next-round-btn')
     const resetGameBtn = window.document.querySelector('.reset-game-btn')
-    // console.log(nextRoundBtn)
-    // console.log(resetGameBtn)
 
     nextRoundBtn.disabled = true
     nextRoundBtn.blur()
     clearCurrentRandomWordStore()
     await renewCurrentRandomWordStore()
 
-    //
-    //
+    // renew header interval
+    // reset guess store
+    // reset valid letters (must be computed from randomWordStore)
+    // set gameWonStatus to false
+
+    // reset Current Round
+    // reset Score
     resetGameBtn.blur()
 }

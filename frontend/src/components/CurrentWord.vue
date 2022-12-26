@@ -7,6 +7,7 @@ const randomWordStore = useCurRandomWord()
 const { currentRandomWord } = storeToRefs(randomWordStore)
 
 const currentGuessStore = useCurrentGuessStore()
+const { currentGuess } = storeToRefs(currentGuessStore)
 const { addLetterToGuess, removeLetterFromGuess } = currentGuessStore
 
 function moveLetter(letterId) {
@@ -31,20 +32,29 @@ function onLetterClicked(letter, letterId) {
     moveLetter(letterId)
     updateGuessStore(letter, letterId)
 }
+
+function getGuessIdxInRandomWordStore(guessId) {
+    // https://stackoverflow.com/questions/13304543/javascript-sort-array-based-on-another-array
+    // currentGuess is the sortingArray
+    return currentGuess.value.findIndex((letter) => letter.id === guessId)
+}
 </script>
 
 <template>
     <div class="letter-upper-row letter">
         <TransitionGroup name="circles">
             <div
-                v-for="{ letter, id, letter_transferred } in currentRandomWord.shuffled_word.filter(
-                    (letter) => letter.letter_transferred
-                )"
+                v-for="{ letter, id } in currentRandomWord.shuffled_word
+                    .filter((letter) => letter.letter_transferred)
+                    .sort(
+                        (a, b) =>
+                            getGuessIdxInRandomWordStore(a.id) - getGuessIdxInRandomWordStore(b.id)
+                    )"
                 :key="id"
                 class="cell letter-cell"
                 @click="onLetterClicked(letter, id)"
             >
-                <span v-if="letter_transferred"> {{ letter }}</span>
+                {{ letter }}
             </div>
         </TransitionGroup>
     </div>
