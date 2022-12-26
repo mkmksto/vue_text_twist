@@ -58,6 +58,7 @@ function onLetterClicked(letter, letterId) {
         >
             <span v-if="!letter_transferred"> {{ letter }}</span>
         </div>
+        <div v-if="currentRandomWord.word.length <= 0" class="fetching">...</div>
     </div>
 </template>
 
@@ -77,5 +78,9 @@ function onLetterClicked(letter, letterId) {
 
 .letter-cell {
     @apply rounded-full uppercase cursor-pointer text-neutral-600 hover:text-neutral-400 bg-white border border-solid border-neutral-400;
+}
+
+.fetching {
+    @apply text-gray-300 w-14 h-14;
 }
 </style>

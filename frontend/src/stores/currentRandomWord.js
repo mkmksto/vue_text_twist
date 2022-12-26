@@ -14,11 +14,16 @@ export const useCurRandomWord = defineStore('curRandomWord', () => {
     }
 
     async function renewCurrentRandomWordStore(gameSettings) {
-        const backendData = fetchBackendWord(gameSettings)
-        const { shuffled_word, sub_words, word } = await backendData
-        currentRandomWord.shuffled_word = shuffled_word
-        currentRandomWord.sub_words = sub_words
-        currentRandomWord.word = word
+        const backendData = await fetchBackendWord(gameSettings)
+        currentRandomWord = backendData
+    }
+
+    function clearCurrentRandomWordStore() {
+        currentRandomWord = {
+            shuffled_word: [],
+            sub_words: [],
+            word: [],
+        }
     }
 
     return { currentRandomWord, unTransferLetters, renewCurrentRandomWordStore }

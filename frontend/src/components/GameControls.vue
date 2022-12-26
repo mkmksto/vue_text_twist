@@ -16,6 +16,7 @@ const { clearGuess } = currentGuessStore
 // Element refs
 /** @type {HTMLElement} */
 const nextRoundBtn = ref(null)
+const resetGameBtn = ref(null)
 
 // local functions
 function shuffle() {
@@ -35,22 +36,67 @@ async function returnLettersToOriginalPlace() {
     clearGuess()
 }
 
+function onGiveUp() {
+    // reset round score
+    // reveal your secrets
+    // game lost status to true ()
+    // clear header interval
+    nextRoundBtn.value.disabled = true
+    nextRoundBtn.blur()
+}
+
+function onEnterBtn() {
+    // test guess
+    // update win state
+}
+
+async function onNextRound() {
+    // clear header interval
+    nextRoundBtn.value.disabled = true
+    nextRoundBtn.value.blur()
+    // reveal your secrets(export this function from subwords)
+    await sleep(3000)
+    await renewCurrentRandomWordStore()
+
+    // renew header interval
+    // reset guess store
+    // reset valid letters (must be computed from randomWordStore)
+    // set gameWonStatus to false
+
+    // increment current round
+}
+
 async function onResetGame() {
     // clear header interval
     nextRoundBtn.value.disabled = true
     nextRoundBtn.value.blur()
     await renewCurrentRandomWordStore()
+
+    // renew header interval
+    // reset guess store
+    // reset valid letters (must be computed from randomWordStore)
+    // set gameWonStatus to false
+
+    // reset Current Round
+    // reset Score
+    resetGameBtn.value.blur()
+}
+
+function sleep(ms) {
+    return new Promise((res) => setTimeout(res, ms))
 }
 </script>
 
 <template>
     <div class="controls">
         <button class="btn" @click="shuffle">Twist</button>
-        <button class="btn">Give Up</button>
+        <button class="btn" @click="onGiveUp">Give Up</button>
         <button class="btn" @click="returnLettersToOriginalPlace">Clear</button>
-        <button class="btn">Enter</button>
-        <button class="btn" @click="onResetGame">Reset Game</button>
-        <button class="btn next-round-btn" ref="nextRoundBtn">Next Round</button>
+        <button class="btn" @click="onEnterBtn">Enter</button>
+        <button class="btn" @click="onResetGame" ref="resetGameBtn">Reset Game</button>
+        <button class="btn next-round-btn" ref="nextRoundBtn" @click="onNextRound">
+            Next Round
+        </button>
     </div>
 </template>
 
