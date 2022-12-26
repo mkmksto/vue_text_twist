@@ -1,17 +1,23 @@
 <script setup>
 import { storeToRefs } from 'pinia'
-import { nextTick } from 'vue'
+import { nextTick, ref } from 'vue'
 import { shuffleItems } from '../functions/math'
 import { useCurrentGuessStore } from '../stores/currentGuess'
 import { useCurRandomWord } from '../stores/currentRandomWord'
 
+// stores
 const randomWordStore = useCurRandomWord()
 const { currentRandomWord } = storeToRefs(randomWordStore)
-const { unTransferLetters } = randomWordStore
+const { unTransferLetters, renewCurrentRandomWordStore } = randomWordStore
 
 const currentGuessStore = useCurrentGuessStore()
 const { clearGuess } = currentGuessStore
 
+// Element refs
+/** @type {HTMLElement} */
+const nextRoundBtn = ref(null)
+
+// local functions
 function shuffle() {
     const curShuffledWord = currentRandomWord.value.shuffled_word
     const shuffledWordArr = Array.from(curShuffledWord)
@@ -28,6 +34,13 @@ async function returnLettersToOriginalPlace() {
     unTransferLetters()
     clearGuess()
 }
+
+async function onResetGame() {
+    // clear header interval
+    nextRoundBtn.value.disabled = true
+    nextRoundBtn.value.blur()
+    await renewCurrentRandomWordStore()
+}
 </script>
 
 <template>
@@ -36,8 +49,8 @@ async function returnLettersToOriginalPlace() {
         <button class="btn">Give Up</button>
         <button class="btn" @click="returnLettersToOriginalPlace">Clear</button>
         <button class="btn">Enter</button>
-        <button class="btn">Reset Game</button>
-        <button class="btn next-round-btn">Next Round</button>
+        <button class="btn" @click="onResetGame">Reset Game</button>
+        <button class="btn next-round-btn" ref="nextRoundBtn">Next Round</button>
     </div>
 </template>
 
