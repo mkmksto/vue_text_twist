@@ -2,6 +2,7 @@
 import { storeToRefs } from 'pinia'
 import { onMounted } from 'vue'
 import { fetchBackendWord } from '../functions/dataFetching'
+import { useCurrentGuessStore } from '../stores/currentGuess'
 import { useCurRandomWord } from '../stores/currentRandomWord'
 import { useSettingsStore } from '../stores/gameSettings'
 
@@ -10,6 +11,9 @@ const { gameSettings } = storeToRefs(settingStore)
 
 const randomWordStore = useCurRandomWord()
 const { currentRandomWord } = storeToRefs(randomWordStore)
+
+const currentGuessStore = useCurrentGuessStore()
+const { currentGuess } = storeToRefs(currentGuessStore)
 
 onMounted(async () => {
     const backend_resp = await fetchBackendWord(gameSettings.value)

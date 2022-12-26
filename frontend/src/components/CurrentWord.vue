@@ -44,7 +44,7 @@ function onLetterClicked(letter, letterId) {
             @click="onLetterClicked(letter, id)"
             class="cell letter-cell"
         >
-            <span v-if="letter_transferred">{{ letter }}</span>
+            {{ letter }}
         </div>
     </div>
 
