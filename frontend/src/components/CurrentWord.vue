@@ -48,21 +48,37 @@ function onLetterClicked(letter, letterId) {
     </div>
 
     <div class="letter-lower-row letter">
-        <div
-            v-for="{ letter, id, letter_transferred } in currentRandomWord.shuffled_word.filter(
-                (letter) => !letter.letter_transferred
-            )"
-            :key="id"
-            class="cell letter-cell"
-            @click="onLetterClicked(letter, id)"
-        >
-            <span v-if="!letter_transferred"> {{ letter }}</span>
-        </div>
-        <div v-if="currentRandomWord.word.length <= 0" class="fetching">...</div>
+        <TransitionGroup name="circles">
+            <div
+                v-for="{ letter, id, letter_transferred } in currentRandomWord.shuffled_word.filter(
+                    (letter) => !letter.letter_transferred
+                )"
+                :key="id"
+                class="cell letter-cell"
+                @click="onLetterClicked(letter, id)"
+            >
+                {{ letter }}
+            </div>
+            <div v-if="currentRandomWord.word.length <= 0" class="fetching">...</div>
+        </TransitionGroup>
     </div>
 </template>
 
 <style scoped>
+/* Animations */
+.circles-move {
+    transition: all 0.4s ease;
+}
+/* Transitions */
+.circles-enter-from {
+}
+
+.circles-enter-active {
+    transition: all 0.4s ease;
+}
+
+/* styling */
+
 .letter {
     @apply flex mt-4 h-14;
 }
