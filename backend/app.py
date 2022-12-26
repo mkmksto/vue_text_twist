@@ -44,6 +44,7 @@ def get_random_word():
     max_subwords = params.get('max_subwords', 20)
 
     while True:
+        print('fetching...')
         rand_word = eng_dict.get_random_word()
         frequency = eng_dict.get_frequency(rand_word)
         if (

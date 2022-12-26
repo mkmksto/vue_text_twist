@@ -1,5 +1,6 @@
 <script setup>
 import { storeToRefs } from 'pinia'
+import { useResetGame } from '../../composables/useNextRoundBtn'
 import { useSettingsStore } from '../../stores/gameSettings'
 import { useSettingsModal } from '../../stores/modalVisibility'
 
@@ -89,7 +90,9 @@ const { hideSettingsModal } = useSettingsModal()
             </div>
 
             <button class="save" @click="hideSettingsModal">Save but don't Restart</button>
-            <button class="restart">Save and Restart</button>
+            <button class="restart" @click="useResetGame(), hideSettingsModal()">
+                Save and Restart
+            </button>
         </div>
     </div>
 </template>

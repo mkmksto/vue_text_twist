@@ -1,14 +1,21 @@
 <script setup>
 import { storeToRefs } from 'pinia'
-import { nextTick, ref } from 'vue'
+import { nextTick, onMounted, ref } from 'vue'
 import { shuffleItems } from '../functions/math'
 import { useCurrentGuessStore } from '../stores/currentGuess'
 import { useCurRandomWord } from '../stores/currentRandomWord'
 
+// export default defineComponent({
+//     name: 'GameControls',
+//     methods: {
+//         onResetGame,
+//     },
+// })
 // stores
 const randomWordStore = useCurRandomWord()
 const { currentRandomWord } = storeToRefs(randomWordStore)
-const { unTransferLetters, renewCurrentRandomWordStore } = randomWordStore
+const { unTransferLetters, renewCurrentRandomWordStore, clearCurrentRandomWordStore } =
+    randomWordStore
 
 const currentGuessStore = useCurrentGuessStore()
 const { clearGuess } = currentGuessStore
@@ -70,6 +77,7 @@ async function onResetGame() {
     // clear header interval
     nextRoundBtn.value.disabled = true
     nextRoundBtn.value.blur()
+    clearCurrentRandomWordStore()
     await renewCurrentRandomWordStore()
 
     // renew header interval
@@ -85,15 +93,21 @@ async function onResetGame() {
 function sleep(ms) {
     return new Promise((res) => setTimeout(res, ms))
 }
+
+onMounted(() => {
+    window.addEventListener('keydown', shuffle)
+})
 </script>
 
 <template>
-    <div class="controls">
+    <div class="controls" @keydown.space="shuffle">
         <button class="btn" @click="shuffle">Twist</button>
         <button class="btn" @click="onGiveUp">Give Up</button>
         <button class="btn" @click="returnLettersToOriginalPlace">Clear</button>
         <button class="btn" @click="onEnterBtn">Enter</button>
-        <button class="btn" @click="onResetGame" ref="resetGameBtn">Reset Game</button>
+        <button class="btn reset-game-btn" @click="onResetGame" ref="resetGameBtn">
+            Reset Game
+        </button>
         <button class="btn next-round-btn" ref="nextRoundBtn" @click="onNextRound">
             Next Round
         </button>
