@@ -49,7 +49,9 @@ function onLetterClicked(letter, letterId) {
 
     <div class="letter-lower-row letter">
         <div
-            v-for="{ letter, id, letter_transferred } in currentRandomWord.shuffled_word"
+            v-for="{ letter, id, letter_transferred } in currentRandomWord.shuffled_word.filter(
+                (letter) => !letter.letter_transferred
+            )"
             :key="id"
             class="cell letter-cell"
             @click="onLetterClicked(letter, id)"
