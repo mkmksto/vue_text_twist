@@ -40,8 +40,8 @@ function onLetterClicked(letter, letterId) {
                 (letter) => letter.letter_transferred
             )"
             :key="id"
-            @click="onLetterClicked(letter, id)"
             class="cell letter-cell"
+            @click="onLetterClicked(letter, id)"
         >
             <span v-if="letter_transferred"> {{ letter }}</span>
         </div>
