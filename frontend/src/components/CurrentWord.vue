@@ -40,11 +40,10 @@ function onLetterClicked(letter, letterId) {
                 (letter) => letter.letter_transferred
             )"
             :key="id"
-            :v-if="!letter_transferred"
             @click="onLetterClicked(letter, id)"
             class="cell letter-cell"
         >
-            {{ letter }}
+            <span v-if="letter_transferred"> {{ letter }}</span>
         </div>
     </div>
 
@@ -52,12 +51,10 @@ function onLetterClicked(letter, letterId) {
         <div
             v-for="{ letter, id, letter_transferred } in currentRandomWord.shuffled_word"
             :key="id"
-            :v-if="letter_transferred"
             class="cell letter-cell"
+            @click="onLetterClicked(letter, id)"
         >
-            <span v-if="!letter_transferred" @click="onLetterClicked(letter, id)">{{
-                letter
-            }}</span>
+            <span v-if="!letter_transferred"> {{ letter }}</span>
         </div>
     </div>
 </template>
