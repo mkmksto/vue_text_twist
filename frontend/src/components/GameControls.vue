@@ -60,8 +60,15 @@ function onGiveUp() {
 }
 
 function onEnterBtn() {
-    // test guess
-    // update win state
+    const isGuessValid = isGuessInSubwords(guessStringOnly.value)
+    if (!isGuessValid) return
+    // const guessIdx = getGuessIdx(guessStringOnly.value)
+    updateSubwordGuessedState(guessStringOnly.value, true)
+
+    if (longestWordHasBeenGuessed.value) {
+        setWinState(true)
+        nextRoundBtn.value.disabled = false
+    }
 }
 
 async function onNextRound() {
@@ -120,15 +127,7 @@ async function onKeyDown(e) {
     } else if (e.key === ' ') {
         shuffle()
     } else if (e.key === 'Enter') {
-        const isGuessValid = isGuessInSubwords(guessStringOnly.value)
-        if (!isGuessValid) return
-        // const guessIdx = getGuessIdx(guessStringOnly.value)
-        updateSubwordGuessedState(guessStringOnly.value, true)
-
-        if (longestWordHasBeenGuessed.value) {
-            setWinState(true)
-            nextRoundBtn.value.disabled = false
-        }
+        onEnterBtn()
     } else if (e.key === 'Escape') {
         returnLettersToOriginalPlace()
     } else if (Array.from(validLetters.value).includes(e.key)) {
