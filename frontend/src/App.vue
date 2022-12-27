@@ -28,8 +28,8 @@ const { isSettingsModalVisible } = storeToRefs(store)
 
 <style>
 :root {
-    --card-width: 500px;
-    /* --card-width: 1000px; */
+    /* --card-width: 500px; */
+    --card-width: 1000px;
     --card-height: 400px;
 }
 
