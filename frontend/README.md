@@ -29,3 +29,7 @@
 -
 -   do the countdown timer last (prob a store)
 -   hover tooltip for keyboard shortcuts
+
+# Future TODO's
+
+-   persist scores inside localstorage? create a modal that shows maybe your top 5 highest score, and when u got that score
