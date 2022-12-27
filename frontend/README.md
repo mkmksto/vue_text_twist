@@ -27,3 +27,4 @@
 -   current round score store
 -
 -   do the countdown timer last (prob a store)
+-   hover tooltip for keyboard shortcuts
