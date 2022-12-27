@@ -1,8 +1,11 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 export const useCurrentGuessStore = defineStore('currentGuessStore', () => {
+    // formatted as [{id: id, letter: letter}]
     const currentGuess = ref([])
+
+    const guessStringOnly = computed(() => currentGuess.value.map((l) => l.letter).join(''))
 
     function addLetterToGuess(letter, letterId) {
         currentGuess.value.push({ letter: letter, id: letterId })
@@ -18,5 +21,9 @@ export const useCurrentGuessStore = defineStore('currentGuessStore', () => {
         currentGuess.value = []
     }
 
-    return { currentGuess, addLetterToGuess, removeLetterFromGuess, clearGuess }
+    function testGuessIfValid() {
+        console.log(guessStringOnly.value)
+    }
+
+    return { currentGuess, addLetterToGuess, removeLetterFromGuess, clearGuess, testGuessIfValid }
 })

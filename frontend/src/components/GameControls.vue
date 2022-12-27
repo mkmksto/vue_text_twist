@@ -12,7 +12,7 @@ const { unTransferLetters, renewCurrentRandomWordStore, clearCurrentRandomWordSt
 
 const currentGuessStore = useCurrentGuessStore()
 const { currentGuess } = storeToRefs(currentGuessStore)
-const { clearGuess, addLetterToGuess } = currentGuessStore
+const { clearGuess, addLetterToGuess, testGuessIfValid } = currentGuessStore
 
 // Element refs
 /** @type {HTMLElement} */
@@ -109,7 +109,7 @@ async function onKeyDown(e) {
     } else if (e.key === ' ') {
         shuffle()
     } else if (e.key === 'Enter') {
-        // test guess
+        const isGuessValid = testGuessIfValid()
         // update win state
     } else if (e.key === 'Escape') {
         returnLettersToOriginalPlace()
