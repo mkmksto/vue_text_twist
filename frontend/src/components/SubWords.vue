@@ -36,7 +36,13 @@ onMounted(async () => {
                 class="word"
                 :key="id"
             >
-                <div v-for="letter in sub_word" class="letter-cell">{{ letter }}</div>
+                <div
+                    v-for="letter in sub_word"
+                    class="letter-cell cell"
+                    :class="{ 'has-been-guessed': has_been_guessed }"
+                >
+                    {{ letter }}
+                </div>
             </div>
         </div>
     </div>
@@ -44,11 +50,14 @@ onMounted(async () => {
 
 <style scoped>
 /* dynamic styling */
-.cell.has-been-guessed {
+.letter-cell.has-been-guessed {
     @apply bg-pink-600 text-white;
     transition: background-color 0.5s ease;
 }
-/*  */
+
+/* .cell {
+    @apply flex justify-center items-center uppercase h-8 w-7 my-1 mx-0.5 bg-white text-white rounded-sm;
+} */
 
 /* basic styling */
 .card {
@@ -64,6 +73,6 @@ onMounted(async () => {
 }
 
 .letter-cell {
-    @apply flex justify-center items-center uppercase h-8 w-7 my-1 mx-0.5 bg-white text-black rounded-sm;
+    @apply flex justify-center items-center uppercase h-8 w-7 my-1 mx-0.5 bg-white text-white rounded-sm;
 }
 </style>
