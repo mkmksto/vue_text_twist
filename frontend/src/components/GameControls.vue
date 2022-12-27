@@ -6,13 +6,13 @@ import { useCurrentGuessStore } from '../stores/currentGuess'
 import { useCurRandomWord } from '../stores/currentRandomWord'
 
 const randomWordStore = useCurRandomWord()
-const { currentRandomWord } = storeToRefs(randomWordStore)
+const { currentRandomWord, validLetters } = storeToRefs(randomWordStore)
 const { unTransferLetters, renewCurrentRandomWordStore, clearCurrentRandomWordStore } =
     randomWordStore
 
 const currentGuessStore = useCurrentGuessStore()
 const { currentGuess } = storeToRefs(currentGuessStore)
-const { clearGuess } = currentGuessStore
+const { clearGuess, addLetterToGuess } = currentGuessStore
 
 // Element refs
 /** @type {HTMLElement} */
@@ -112,13 +112,32 @@ async function onKeyDown(e) {
         // update win state
     } else if (e.key === 'Escape') {
         returnLettersToOriginalPlace()
-    } else if (e.key) {
-        // check if e.key is inside valid letters
-        // valid letters would be a computed property from
-        // current random word
+    } else if (Array.from(validLetters.value).includes(e.key)) {
+        updateGuessStore(e.key)
+        updateLetterTransfer(e.key)
     }
 
     // resetGameBtn.value.blur()
+}
+
+function updateGuessStore(key) {
+    // search for letters that haven't been transferred yet
+    let clickedLetter = currentRandomWord.value.shuffled_word
+        .filter((l) => !l.letter_transferred)
+        .find((l) => key === l.letter)
+    if (!clickedLetter) return
+
+    // stop if letter with the same uniqueID is already in guess
+    // checks for same IDs
+    const letterAlreadyInGuess = currentGuess.value.some((l) => l.id === clickedLetter.id)
+    if (letterAlreadyInGuess) return
+
+    addLetterToGuess(clickedLetter.letter, clickedLetter.id)
+    console.log(currentGuess)
+}
+
+function updateLetterTransfer(key) {
+    //
 }
 
 function removeLetterFromGuess() {

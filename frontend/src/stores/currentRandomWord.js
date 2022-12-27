@@ -11,7 +11,7 @@ export const useCurRandomWord = defineStore('curRandomWord', () => {
 
     // getters
     const validLetters = computed(() => {
-        //
+        return new Set(currentRandomWord.word)
     })
 
     // actions
@@ -39,5 +39,6 @@ export const useCurRandomWord = defineStore('curRandomWord', () => {
         unTransferLetters,
         renewCurrentRandomWordStore,
         clearCurrentRandomWordStore,
+        validLetters,
     }
 })
