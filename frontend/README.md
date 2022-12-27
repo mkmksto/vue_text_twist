@@ -28,6 +28,7 @@
 -   DONE current round score store
 -
 -   do the countdown timer last (prob a store)
+-   how to icons (prob font awesome) for vue
 -   hover tooltip for keyboard shortcuts
 
 # Future TODO's
