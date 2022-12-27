@@ -11,9 +11,9 @@ export const useGameScore = defineStore('gameScore', () => {
         } else if (guessLen >= 3 && guessLen < 6) {
             gameScore.value += guessLen * 300
         } else if (guessLen >= 6 && guessLen < 9) {
-            gameScore.value += 800
+            gameScore.value += guessLen * 800
         } else if (guessLen >= 9) {
-            gameScore.value += 1500
+            gameScore.value += guessLen * 1500
         }
     }
 

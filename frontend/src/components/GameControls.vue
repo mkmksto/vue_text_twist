@@ -62,7 +62,7 @@ async function returnLettersToOriginalPlace() {
 
 function onGiveUp() {
     resetScore()
-    // resetRound()
+    resetRound()
     revealYourSecrets()
 
     setLoseState(true)
@@ -92,7 +92,7 @@ async function onNextRound() {
     // clear header interval
     nextRoundBtn.value.disabled = true
     nextRoundBtn.value.blur()
-    // reveal your secrets(export this function from subwords)
+    revealYourSecrets()
     await sleep(3000)
     await renewCurrentRandomWordStore()
 
