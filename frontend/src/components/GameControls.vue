@@ -19,6 +19,7 @@ const {
     getGuessIdx,
     isGuessInSubwords,
     updateSubwordGuessedState,
+    revealYourSecrets,
 } = randomWordStore
 
 const currentGuessStore = useCurrentGuessStore()
@@ -62,7 +63,8 @@ async function returnLettersToOriginalPlace() {
 function onGiveUp() {
     resetScore()
     // resetRound()
-    // reveal your secrets
+    revealYourSecrets()
+
     setLoseState(true)
     // clear header interval
     nextRoundBtn.value.disabled = true
@@ -136,7 +138,6 @@ async function onKeyDown(e) {
         updateLetterTransfer(e.key)
     }
 
-    await onMounted()
     resetGameBtn.value.blur()
     giveUpBtn.value.blur()
 }

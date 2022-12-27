@@ -64,6 +64,10 @@ export const useCurRandomWord = defineStore('curRandomWord', () => {
         currentRandomWord.word = []
     }
 
+    function revealYourSecrets() {
+        currentRandomWord.sub_words.forEach((w) => (w.has_been_guessed = true))
+    }
+
     return {
         currentRandomWord,
         unTransferLetters,
@@ -74,5 +78,6 @@ export const useCurRandomWord = defineStore('curRandomWord', () => {
         isGuessInSubwords,
         updateSubwordGuessedState,
         longestWordHasBeenGuessed,
+        revealYourSecrets,
     }
 })
