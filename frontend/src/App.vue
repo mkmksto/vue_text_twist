@@ -6,18 +6,19 @@ import Header from './components/Header.vue'
 import GameLostModal from './components/modals/GameLostModal.vue'
 import SettingsModal from './components/modals/SettingsModal.vue'
 import Subwords from './components/SubWords.vue'
+import { useGameState } from './stores/gameState'
 import { useSettingsModal } from './stores/modalVisibility'
 
 const store = useSettingsModal()
 const { isSettingsModalVisible } = storeToRefs(store)
 
-// const settingsStore = useSettingsStore()
-// const { gameSettings } = storeToRefs(settingsStore)
+const gameState = useGameState()
+const { loseState } = storeToRefs(gameState)
 </script>
 
 <template>
     <SettingsModal v-if="isSettingsModalVisible" />
-    <GameLostModal v-if="false" />
+    <GameLostModal v-if="loseState" />
     <Header />
     <main>
         <Subwords />
