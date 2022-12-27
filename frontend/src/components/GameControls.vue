@@ -134,7 +134,6 @@ function updateGuessStore(key) {
     if (letterAlreadyInGuess) return
 
     addLetterToGuess(clickedLetter.letter, clickedLetter.id)
-    console.log(currentGuess)
 }
 
 function updateLetterTransfer(key) {
