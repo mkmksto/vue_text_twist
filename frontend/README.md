@@ -23,8 +23,8 @@
 
 -   implement give up btn (invokes a reveal your secrets function, the func simply sets the has_been_guessed prop of each subword to true), prob make this a composable
 -   complete buttons functionality
--   current round store (functions: increment round, reset round)
--   current round score store
+-   DONE current round store (functions: increment round, reset round)
+-   DONE current round score store
 -
 -   do the countdown timer last (prob a store)
 -   hover tooltip for keyboard shortcuts
