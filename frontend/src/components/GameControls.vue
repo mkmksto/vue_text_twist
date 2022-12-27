@@ -137,7 +137,11 @@ function updateGuessStore(key) {
 }
 
 function updateLetterTransfer(key) {
-    //
+    let clickedLetter = currentRandomWord.value.shuffled_word
+        .filter((l) => !l.letter_transferred)
+        .find((l) => key === l.letter)
+    if (!clickedLetter) return
+    clickedLetter.letter_transferred = true
 }
 
 function removeLetterFromGuess() {
