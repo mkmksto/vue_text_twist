@@ -4,7 +4,7 @@ import { useSettingsModal } from '../stores/modalVisibility'
 import { useRoundTracker } from '../stores/roundTracker'
 import { useGameScore } from '../stores/score'
 
-const { isSettingsModalVisible, showSettingsModal, hideSettingsModal } = useSettingsModal()
+const { showSettingsModal } = useSettingsModal()
 
 const score = useGameScore()
 const { gameScore } = storeToRefs(score)
