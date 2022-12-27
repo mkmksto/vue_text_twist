@@ -68,7 +68,7 @@ function onGiveUp() {
     setLoseState(true)
     // clear header interval
     nextRoundBtn.value.disabled = true
-    nextRoundBtn.blur()
+    nextRoundBtn.value.blur()
 }
 
 function onEnterBtn() {

@@ -1,11 +1,12 @@
 <script setup>
-//
+import { useResetGame } from '../../composables/useResetGame'
 </script>
 
 <template>
     <div class="modal">
         <div class="modal-card">
-            <span class="you-lose-msg">Game Over</span><button>Restart</button>
+            <span class="you-lose-msg">Game Over</span
+            ><button @click="useResetGame">Restart</button>
         </div>
     </div>
 </template>

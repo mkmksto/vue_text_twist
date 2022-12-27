@@ -17,6 +17,7 @@ export const useCurrentGuessStore = defineStore('currentGuessStore', () => {
     }
 
     function clearGuess() {
+        console.log('clearning guess')
         currentGuess.value = []
     }
 
