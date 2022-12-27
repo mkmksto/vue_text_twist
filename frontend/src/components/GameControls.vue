@@ -5,13 +5,6 @@ import { shuffleItems } from '../functions/math'
 import { useCurrentGuessStore } from '../stores/currentGuess'
 import { useCurRandomWord } from '../stores/currentRandomWord'
 
-// export default defineComponent({
-//     name: 'GameControls',
-//     methods: {
-//         onResetGame,
-//     },
-// })
-// stores
 const randomWordStore = useCurRandomWord()
 const { currentRandomWord } = storeToRefs(randomWordStore)
 const { unTransferLetters, renewCurrentRandomWordStore, clearCurrentRandomWordStore } =
