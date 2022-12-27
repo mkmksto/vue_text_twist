@@ -123,7 +123,7 @@ async function onKeyDown(e) {
     } else if (e.key === 'Enter') {
         const isGuessValid = isGuessInSubwords(guessStringOnly.value)
         if (!isGuessValid) return
-        const guessIdx = getGuessIdx(guessStringOnly.value)
+        // const guessIdx = getGuessIdx(guessStringOnly.value)
         updateSubwordGuessedState(guessStringOnly.value, true)
 
         if (longestWordHasBeenGuessed.value) {
