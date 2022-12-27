@@ -30,6 +30,7 @@ const { winState } = storeToRefs(gameState)
 /** @type {HTMLElement} */
 const nextRoundBtn = ref(null)
 const resetGameBtn = ref(null)
+const giveUpBtn = ref(null)
 
 // local functions
 function shuffle() {
@@ -72,9 +73,8 @@ async function onNextRound() {
     await renewCurrentRandomWordStore()
 
     // renew header interval
-    // reset guess store
-    // reset valid letters (must be computed from randomWordStore)
-    // set gameWonStatus to false
+    clearGuess()
+    setWinState(false)
 
     // increment current round
 }
@@ -87,9 +87,8 @@ async function onResetGame() {
     await renewCurrentRandomWordStore()
 
     // renew header interval
-    // reset guess store
-    // reset valid letters (must be computed from randomWordStore)
-    // set gameWonStatus to false
+    clearGuess()
+    setWinState(false)
 
     // reset Current Round
     // reset Score
@@ -128,6 +127,7 @@ async function onKeyDown(e) {
 
         if (longestWordHasBeenGuessed.value) {
             setWinState(true)
+            nextRoundBtn.value.disabled = false
         }
     } else if (e.key === 'Escape') {
         returnLettersToOriginalPlace()
@@ -136,8 +136,8 @@ async function onKeyDown(e) {
         updateLetterTransfer(e.key)
     }
 
-    // ! fix this
-    // resetGameBtn.value.blur()
+    resetGameBtn.value.blur()
+    giveUpBtn.value.blur()
 }
 
 function updateGuessStore(key) {
@@ -180,13 +180,13 @@ function removeLetterFromGuess() {
 <template>
     <div class="controls">
         <button class="btn" @click="shuffle">Twist</button>
-        <button class="btn" @click="onGiveUp">Give Up</button>
+        <button class="btn" @click="onGiveUp" ref="giveUpBtn">Give Up</button>
         <button class="btn" @click="returnLettersToOriginalPlace">Clear</button>
         <button class="btn" @click="onEnterBtn">Enter</button>
         <button class="btn reset-game-btn" @click="onResetGame" ref="resetGameBtn">
             Reset Game
         </button>
-        <button class="btn next-round-btn" ref="nextRoundBtn" @click="onNextRound">
+        <button class="btn next-round-btn" ref="nextRoundBtn" @click="onNextRound" disabled>
             Next Round
         </button>
     </div>
