@@ -113,7 +113,7 @@ onMounted(() => {
 async function onKeyDown(e) {
     await nextTick()
     if (e.repeat) return
-    // if game lost, return
+    // if game lost, return, i implemented this as game over
 
     if (e.key === 'Backspace') {
         removeLetterFromGuess()
