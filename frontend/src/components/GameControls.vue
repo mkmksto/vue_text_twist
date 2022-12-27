@@ -99,6 +99,7 @@ onMounted(() => {
 
 /** @param {KeyboardEvent} e */
 async function onKeyDown(e) {
+    await nextTick()
     if (e.repeat) return
     // if game lost, return
 
