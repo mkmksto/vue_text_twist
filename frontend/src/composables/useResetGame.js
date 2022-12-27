@@ -14,6 +14,7 @@ export async function useResetGame() {
         app = createApp(App)
         app.use(pinia)
     })
+
     // stores
     const randomWordStore = useCurRandomWord()
     const { renewCurrentRandomWordStore, clearCurrentRandomWordStore } = randomWordStore
