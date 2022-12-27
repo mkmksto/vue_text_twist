@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { reactive } from 'vue'
+import { computed, reactive } from 'vue'
 import { fetchBackendWord } from '../functions/dataFetching'
 
 export const useCurRandomWord = defineStore('curRandomWord', () => {
@@ -9,6 +9,12 @@ export const useCurRandomWord = defineStore('curRandomWord', () => {
         word: [],
     })
 
+    // getters
+    const validLetters = computed(() => {
+        //
+    })
+
+    // actions
     function unTransferLetters() {
         currentRandomWord.shuffled_word.forEach((letter) => (letter.letter_transferred = false))
     }

@@ -3,15 +3,6 @@ import { createApp, nextTick, onMounted } from 'vue'
 import App from '../App.vue'
 import { useCurRandomWord } from '../stores/currentRandomWord'
 
-// onMounted(() => {
-//     const pinia = createPinia()
-//     const app = createApp(App)
-//     app.use(pinia)
-// })
-
-// const randomWordStore = useCurRandomWord()
-// const { renewCurrentRandomWordStore, clearCurrentRandomWordStore } = randomWordStore
-
 export async function useResetGame() {
     // store init
     await nextTick()
