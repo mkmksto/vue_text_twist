@@ -28,7 +28,7 @@ const { clearGuess, addLetterToGuess, testGuessIfValid } = currentGuessStore
 
 const gameState = useGameState()
 const { setWinState, setLoseState } = gameState
-const { winState } = storeToRefs(gameState)
+const { winState, loseState } = storeToRefs(gameState)
 
 const score = useGameScore()
 const { updateScore, resetScore } = score
@@ -122,7 +122,7 @@ onMounted(() => {
 async function onKeyDown(e) {
     await nextTick()
     if (e.repeat) return
-    // if game lost, return, i implemented this as game over
+    if (loseState) return
 
     if (e.key === 'Backspace') {
         removeLetterFromGuess()
