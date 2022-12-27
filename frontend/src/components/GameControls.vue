@@ -1,6 +1,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { nextTick, onMounted, ref } from 'vue'
+import { useResetGame } from '../composables/useResetGame'
 import { shuffleItems } from '../functions/math'
 import { useCurrentGuessStore } from '../stores/currentGuess'
 import { useCurRandomWord } from '../stores/currentRandomWord'
@@ -87,19 +88,7 @@ async function onNextRound() {
 }
 
 async function onResetGame() {
-    // clear header interval
-    nextRoundBtn.value.disabled = true
-    nextRoundBtn.value.blur()
-    clearCurrentRandomWordStore()
-    await renewCurrentRandomWordStore()
-
-    // renew header interval
-    clearGuess()
-    setWinState(false)
-
-    // reset Current Round
-    // reset Score
-    resetGameBtn.value.blur()
+    useResetGame()
 }
 
 function sleep(ms) {
