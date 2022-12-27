@@ -10,8 +10,10 @@
 # Roadmap
 
 -   implement a function for checking if a guess is valid (probably would be coupled to guess store) (maybe can also be a computed???)
--   implement guessing subwords @ SubWords.vue, each row (from each column) should have a conditional (dynamic?) class that determines whether it shows or not @ the card (also, BG should change when guessed)
 -   implement a guess store function for validating guesses (https://github.com/mkmksto/svelte_text_twist/blob/master/frontend/src/functions/guessValidation.js)
+-   (additional details) - update GameControls.vue's Enter key, first test guess is true (testGuess), then update the win state
+
+-   implement guessing subwords @ SubWords.vue, each row (from each column) should have a conditional (dynamic?) class that determines whether it shows or not @ the card (also, BG should change when guessed)
 
 -   create a win state store (simple ref with method to set if game is won or lost), maybe also create a computed property for this (or maybe it's the other way around, but it might be better for one to be a computed prop of the other, rather than 2 separate stores)
 -   game lost modal

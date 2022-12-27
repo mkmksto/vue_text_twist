@@ -1,9 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
-// const randomWordStore = useCurRandomWord()
-// const { currentRandomWord } = storeToRefs(randomWordStore)
-
 export const useCurrentGuessStore = defineStore('currentGuessStore', () => {
     const currentGuess = ref([])
 

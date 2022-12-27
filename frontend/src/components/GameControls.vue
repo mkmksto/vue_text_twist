@@ -159,14 +159,7 @@ function removeLetterFromGuess() {
 </script>
 
 <template>
-    <div
-        class="controls"
-        @keydown.space="shuffle"
-        @keydown.delete=""
-        @keydown.enter=""
-        @keydown="onKeyDown"
-        @keydown.tab=""
-    >
+    <div class="controls">
         <button class="btn" @click="shuffle">Twist</button>
         <button class="btn" @click="onGiveUp">Give Up</button>
         <button class="btn" @click="returnLettersToOriginalPlace">Clear</button>
