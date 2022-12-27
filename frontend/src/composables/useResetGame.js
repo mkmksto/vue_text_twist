@@ -1,7 +1,9 @@
 import { createPinia } from 'pinia'
 import { createApp, nextTick, onMounted } from 'vue'
 import App from '../App.vue'
+import { useCurrentGuessStore } from '../stores/currentGuess'
 import { useCurRandomWord } from '../stores/currentRandomWord'
+import { useGameState } from '../stores/gameState'
 
 export async function useResetGame() {
     // store init
@@ -12,8 +14,15 @@ export async function useResetGame() {
         app = createApp(App)
         app.use(pinia)
     })
+    // stores
     const randomWordStore = useCurRandomWord()
     const { renewCurrentRandomWordStore, clearCurrentRandomWordStore } = randomWordStore
+
+    const currentGuessStore = useCurrentGuessStore
+    const { clearGuess } = currentGuessStore
+
+    const gameState = useGameState
+    const { setWinState } = gameState
 
     // actual function stuff
     // clear header interval
@@ -27,9 +36,8 @@ export async function useResetGame() {
     await renewCurrentRandomWordStore()
 
     // renew header interval
-    // reset guess store
-    // reset valid letters (must be computed from randomWordStore)
-    // set gameWonStatus to false
+    clearGuess()
+    setWinState(false)
 
     // reset Current Round
     // reset Score
