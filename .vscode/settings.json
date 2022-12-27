@@ -1,5 +1,5 @@
 {
-  "cSpell.words": ["pinia"],
+  "cSpell.words": ["pinia", "Subword"],
   "python.linting.pylintEnabled": true,
   "python.linting.enabled": true,
   // "python.defaultInterpreterPath": "vue_text_twist/backend/tt_backend_venv/Scripts/python",

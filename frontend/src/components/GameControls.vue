@@ -7,11 +7,17 @@ import { useCurRandomWord } from '../stores/currentRandomWord'
 
 const randomWordStore = useCurRandomWord()
 const { currentRandomWord, validLetters } = storeToRefs(randomWordStore)
-const { unTransferLetters, renewCurrentRandomWordStore, clearCurrentRandomWordStore } =
-    randomWordStore
+const {
+    unTransferLetters,
+    renewCurrentRandomWordStore,
+    clearCurrentRandomWordStore,
+    getGuessIdx,
+    isGuessInSubwords,
+    updateSubwordGuessedState,
+} = randomWordStore
 
 const currentGuessStore = useCurrentGuessStore()
-const { currentGuess } = storeToRefs(currentGuessStore)
+const { currentGuess, guessStringOnly } = storeToRefs(currentGuessStore)
 const { clearGuess, addLetterToGuess, testGuessIfValid } = currentGuessStore
 
 // Element refs
@@ -109,7 +115,11 @@ async function onKeyDown(e) {
     } else if (e.key === ' ') {
         shuffle()
     } else if (e.key === 'Enter') {
-        const isGuessValid = testGuessIfValid()
+        const isGuessValid = isGuessInSubwords(guessStringOnly.value)
+        if (!isGuessValid) return
+        const guessIdx = getGuessIdx(guessStringOnly.value)
+        updateSubwordGuessedState(guessStringOnly.value, true)
+        console.log(currentRandomWord.value.sub_words)
         // update win state
     } else if (e.key === 'Escape') {
         returnLettersToOriginalPlace()
@@ -118,6 +128,7 @@ async function onKeyDown(e) {
         updateLetterTransfer(e.key)
     }
 
+    // ! fix this
     // resetGameBtn.value.blur()
 }
 

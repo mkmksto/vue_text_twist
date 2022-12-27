@@ -10,11 +10,31 @@ export const useCurRandomWord = defineStore('curRandomWord', () => {
     })
 
     // getters
+    /**
+     * valid key presses
+     */
     const validLetters = computed(() => {
         return new Set(currentRandomWord.word)
     })
 
     // actions
+    function getGuessIdx(guessString) {
+        return currentRandomWord.sub_words.findIndex((w) => w.sub_word === guessString)
+    }
+
+    function isGuessInSubwords(guessString) {
+        return currentRandomWord.sub_words.some((w) => w.sub_word === guessString)
+    }
+
+    /**
+     * Update the has_been_guessed status of a subword
+     * @param {String} guessString - guess string derived from curreGuess store (from its guessStringOnly prop)
+     * @param {boolean} bool
+     */
+    function updateSubwordGuessedState(guessString, bool) {
+        currentRandomWord.sub_words.find((w) => w.sub_word === guessString).has_been_guessed = bool
+    }
+
     function unTransferLetters() {
         currentRandomWord.shuffled_word.forEach((letter) => (letter.letter_transferred = false))
     }
@@ -40,5 +60,8 @@ export const useCurRandomWord = defineStore('curRandomWord', () => {
         renewCurrentRandomWordStore,
         clearCurrentRandomWordStore,
         validLetters,
+        getGuessIdx,
+        isGuessInSubwords,
+        updateSubwordGuessedState,
     }
 })
