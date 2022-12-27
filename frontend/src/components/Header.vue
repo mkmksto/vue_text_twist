@@ -1,7 +1,12 @@
 <script setup>
+import { storeToRefs } from 'pinia'
 import { useSettingsModal } from '../stores/modalVisibility'
+import { useGameScore } from '../stores/score'
 
 const { isSettingsModalVisible, showSettingsModal, hideSettingsModal } = useSettingsModal()
+
+const score = useGameScore()
+const { gameScore } = storeToRefs(score)
 </script>
 
 <template>
@@ -9,7 +14,7 @@ const { isSettingsModalVisible, showSettingsModal, hideSettingsModal } = useSett
         <ul>
             <span class="game-info"
                 >Score:
-                <li class="current-info">0</li></span
+                <li class="current-info">{{ gameScore }}</li></span
             >
             <span class="game-info"
                 >Time:

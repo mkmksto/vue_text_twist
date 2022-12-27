@@ -6,6 +6,7 @@ import { shuffleItems } from '../functions/math'
 import { useCurrentGuessStore } from '../stores/currentGuess'
 import { useCurRandomWord } from '../stores/currentRandomWord'
 import { useGameState } from '../stores/gameState'
+import { useGameScore } from '../stores/score'
 
 // stores
 const randomWordStore = useCurRandomWord()
@@ -26,6 +27,9 @@ const { clearGuess, addLetterToGuess, testGuessIfValid } = currentGuessStore
 const gameState = useGameState()
 const { setWinState } = gameState
 const { winState } = storeToRefs(gameState)
+
+const score = useGameScore()
+const { updateScore } = score
 
 // Element refs
 /** @type {HTMLElement} */
@@ -63,8 +67,10 @@ function onGiveUp() {
 function onEnterBtn() {
     const isGuessValid = isGuessInSubwords(guessStringOnly.value)
     if (!isGuessValid) return
+
     // const guessIdx = getGuessIdx(guessStringOnly.value)
     updateSubwordGuessedState(guessStringOnly.value, true)
+    updateScore(guessStringOnly.value)
 
     if (longestWordHasBeenGuessed.value) {
         setWinState(true)
