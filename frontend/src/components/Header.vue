@@ -1,12 +1,16 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useSettingsModal } from '../stores/modalVisibility'
+import { useRoundTracker } from '../stores/roundTracker'
 import { useGameScore } from '../stores/score'
 
 const { isSettingsModalVisible, showSettingsModal, hideSettingsModal } = useSettingsModal()
 
 const score = useGameScore()
 const { gameScore } = storeToRefs(score)
+
+const round = useRoundTracker()
+const { gameRound } = storeToRefs(round)
 </script>
 
 <template>
@@ -22,7 +26,7 @@ const { gameScore } = storeToRefs(score)
             >
             <span class="game-info"
                 >Round:
-                <li class="current-info">1</li></span
+                <li class="current-info">{{ gameRound }}</li></span
             >
             <li @click="showSettingsModal" class="icons">Settings</li>
         </ul>

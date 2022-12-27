@@ -6,6 +6,7 @@ import { shuffleItems } from '../functions/math'
 import { useCurrentGuessStore } from '../stores/currentGuess'
 import { useCurRandomWord } from '../stores/currentRandomWord'
 import { useGameState } from '../stores/gameState'
+import { useRoundTracker } from '../stores/roundTracker'
 import { useGameScore } from '../stores/score'
 
 // stores
@@ -25,11 +26,14 @@ const { currentGuess, guessStringOnly } = storeToRefs(currentGuessStore)
 const { clearGuess, addLetterToGuess, testGuessIfValid } = currentGuessStore
 
 const gameState = useGameState()
-const { setWinState } = gameState
+const { setWinState, setLoseState } = gameState
 const { winState } = storeToRefs(gameState)
 
 const score = useGameScore()
-const { updateScore } = score
+const { updateScore, resetScore } = score
+
+const round = useRoundTracker()
+const { moveToNextRound, resetRound } = round
 
 // Element refs
 /** @type {HTMLElement} */
@@ -56,9 +60,10 @@ async function returnLettersToOriginalPlace() {
 }
 
 function onGiveUp() {
-    // reset round score
+    resetScore()
+    // resetRound()
     // reveal your secrets
-    // game lost status to true ()
+    setLoseState(true)
     // clear header interval
     nextRoundBtn.value.disabled = true
     nextRoundBtn.blur()
@@ -79,6 +84,9 @@ function onEnterBtn() {
 }
 
 async function onNextRound() {
+    clearGuess()
+    setWinState(false)
+
     // clear header interval
     nextRoundBtn.value.disabled = true
     nextRoundBtn.value.blur()
@@ -87,10 +95,8 @@ async function onNextRound() {
     await renewCurrentRandomWordStore()
 
     // renew header interval
-    clearGuess()
-    setWinState(false)
 
-    // increment current round
+    moveToNextRound()
 }
 
 async function onResetGame() {
@@ -130,6 +136,7 @@ async function onKeyDown(e) {
         updateLetterTransfer(e.key)
     }
 
+    await onMounted()
     resetGameBtn.value.blur()
     giveUpBtn.value.blur()
 }

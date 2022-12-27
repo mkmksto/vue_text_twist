@@ -17,5 +17,9 @@ export const useGameScore = defineStore('gameScore', () => {
         }
     }
 
-    return { gameScore, updateScore }
+    function resetScore() {
+        gameScore.value = 0
+    }
+
+    return { gameScore, updateScore, resetScore }
 })
