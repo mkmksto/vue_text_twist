@@ -4,9 +4,11 @@ import { nextTick, onMounted, ref } from 'vue'
 import { shuffleItems } from '../functions/math'
 import { useCurrentGuessStore } from '../stores/currentGuess'
 import { useCurRandomWord } from '../stores/currentRandomWord'
+import { useGameState } from '../stores/gameState'
 
+// stores
 const randomWordStore = useCurRandomWord()
-const { currentRandomWord, validLetters } = storeToRefs(randomWordStore)
+const { currentRandomWord, validLetters, longestWordHasBeenGuessed } = storeToRefs(randomWordStore)
 const {
     unTransferLetters,
     renewCurrentRandomWordStore,
@@ -19,6 +21,10 @@ const {
 const currentGuessStore = useCurrentGuessStore()
 const { currentGuess, guessStringOnly } = storeToRefs(currentGuessStore)
 const { clearGuess, addLetterToGuess, testGuessIfValid } = currentGuessStore
+
+const gameState = useGameState()
+const { setWinState } = gameState
+const { winState } = storeToRefs(gameState)
 
 // Element refs
 /** @type {HTMLElement} */
@@ -119,8 +125,10 @@ async function onKeyDown(e) {
         if (!isGuessValid) return
         const guessIdx = getGuessIdx(guessStringOnly.value)
         updateSubwordGuessedState(guessStringOnly.value, true)
-        console.log(currentRandomWord.value.sub_words)
-        // update win state
+
+        if (longestWordHasBeenGuessed.value) {
+            setWinState(true)
+        }
     } else if (e.key === 'Escape') {
         returnLettersToOriginalPlace()
     } else if (Array.from(validLetters.value).includes(e.key)) {

@@ -6,7 +6,7 @@ export const useCurRandomWord = defineStore('curRandomWord', () => {
     const currentRandomWord = reactive({
         shuffled_word: [],
         sub_words: [],
-        word: [],
+        word: '',
     })
 
     // getters
@@ -15,6 +15,16 @@ export const useCurRandomWord = defineStore('curRandomWord', () => {
      */
     const validLetters = computed(() => {
         return new Set(currentRandomWord.word)
+    })
+
+    const longestWordHasBeenGuessed = computed(() => {
+        // because there can be more than 1 longest word
+
+        const wordLen = currentRandomWord.word.length
+        const longestWords = currentRandomWord.sub_words.filter(
+            (w) => w.sub_word.length === wordLen
+        )
+        return longestWords.some((w) => w.has_been_guessed)
     })
 
     // actions
@@ -63,5 +73,6 @@ export const useCurRandomWord = defineStore('curRandomWord', () => {
         getGuessIdx,
         isGuessInSubwords,
         updateSubwordGuessedState,
+        longestWordHasBeenGuessed,
     }
 })

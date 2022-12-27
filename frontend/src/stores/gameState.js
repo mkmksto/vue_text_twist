@@ -21,4 +21,6 @@ export const useGameState = defineStore('gameState', () => {
     function setLoseState(bool) {
         loseState.value = bool
     }
+
+    return { winState, loseState, setWinState, setLoseState, isGameOver }
 })
