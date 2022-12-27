@@ -1,6 +1,6 @@
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useResetGame } from '../../composables/useNextRoundBtn'
+import { useResetGame } from '../../composables/useResetGame'
 import { useSettingsStore } from '../../stores/gameSettings'
 import { useSettingsModal } from '../../stores/modalVisibility'
 
