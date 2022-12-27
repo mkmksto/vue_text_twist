@@ -88,12 +88,46 @@ function sleep(ms) {
 }
 
 onMounted(() => {
-    window.addEventListener('keydown', shuffle)
+    window.addEventListener('keydown', (e) => {
+        onKeyDown(e)
+    })
 })
+
+// keyboard input
+/** @param {KeyboardEvent} e */
+async function onKeyDown(e) {
+    if (e.repeat) return
+    // if game lost, return
+
+    if (e.key === 'Backspace') {
+        // remove letter from guess
+        await sleep(200)
+    } else if (e.key === ' ') {
+        shuffle()
+    } else if (e.key === 'Enter') {
+        // test guess
+        // update win state
+    } else if (e.key === 'Escape') {
+        returnLettersToOriginalPlace()
+    } else if (e.key) {
+        // check if e.key is inside valid letters
+        // valid letters would be a computed property from
+        // current random word
+    }
+
+    resetGameBtn.value.blur()
+}
 </script>
 
 <template>
-    <div class="controls" @keydown.space="shuffle">
+    <div
+        class="controls"
+        @keydown.space="shuffle"
+        @keydown.delete=""
+        @keydown.enter=""
+        @keydown="onKeyDown"
+        @keydown.tab=""
+    >
         <button class="btn" @click="shuffle">Twist</button>
         <button class="btn" @click="onGiveUp">Give Up</button>
         <button class="btn" @click="returnLettersToOriginalPlace">Clear</button>
