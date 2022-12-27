@@ -11,6 +11,7 @@ const { unTransferLetters, renewCurrentRandomWordStore, clearCurrentRandomWordSt
     randomWordStore
 
 const currentGuessStore = useCurrentGuessStore()
+const { currentGuess } = storeToRefs(currentGuessStore)
 const { clearGuess } = currentGuessStore
 
 // Element refs
@@ -87,20 +88,22 @@ function sleep(ms) {
     return new Promise((res) => setTimeout(res, ms))
 }
 
+/**
+ * keyboard inputs
+ */
 onMounted(() => {
     window.addEventListener('keydown', (e) => {
         onKeyDown(e)
     })
 })
 
-// keyboard input
 /** @param {KeyboardEvent} e */
 async function onKeyDown(e) {
     if (e.repeat) return
     // if game lost, return
 
     if (e.key === 'Backspace') {
-        // remove letter from guess
+        removeLetterFromGuess()
         await sleep(200)
     } else if (e.key === ' ') {
         shuffle()
@@ -115,7 +118,20 @@ async function onKeyDown(e) {
         // current random word
     }
 
-    resetGameBtn.value.blur()
+    // resetGameBtn.value.blur()
+}
+
+function removeLetterFromGuess() {
+    if (currentGuess.value.length <= 0) return
+
+    const lastItem = currentGuess.value[currentGuess.value.length - 1]
+    const correspondingLetterFromCurrentWordStore = currentRandomWord.value.shuffled_word
+        .filter((l) => l.letter_transferred)
+        .find((l) => lastItem.id === l.id)
+    if (!correspondingLetterFromCurrentWordStore) return
+
+    currentGuess.value.pop()
+    correspondingLetterFromCurrentWordStore.letter_transferred = false
 }
 </script>
 
