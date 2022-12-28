@@ -21,6 +21,9 @@
 -   hover tooltip for keyboard shortcuts
 -   implement pausing (a button, and when you enter settings, hide the current word when game is paused)
 
+-   ! PRACTICE refactoring (creating some retarded branch then name you variables and functions better!)
+-   also practice git then
+
 # Future TODO's
 
 -   persist scores inside localstorage? create a modal that shows maybe your top 5 highest score, and when u got that score
