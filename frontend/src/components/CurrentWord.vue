@@ -62,7 +62,7 @@ function getGuessIdxInRandomWordStore(guessId) {
     <div class="letter-lower-row letter">
         <TransitionGroup name="circles">
             <div
-                v-for="{ letter, id, letter_transferred } in currentRandomWord.shuffled_word.filter(
+                v-for="{ letter, id } in currentRandomWord.shuffled_word.filter(
                     (letter) => !letter.letter_transferred
                 )"
                 :key="id"
