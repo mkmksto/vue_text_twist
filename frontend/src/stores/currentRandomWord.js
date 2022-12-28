@@ -9,10 +9,12 @@ export const useCurRandomWord = defineStore('curRandomWord', () => {
         word: '',
     })
 
-    // getters
-    /**
-     * valid key presses
-     */
+    const isBackendDataFetched = computed(() => {
+        return new Promise((res) => {
+            if (!currentRandomWord.word) res
+        })
+    })
+
     const validLetters = computed(() => {
         return new Set(currentRandomWord.word)
     })
@@ -27,7 +29,6 @@ export const useCurRandomWord = defineStore('curRandomWord', () => {
         return longestWords.some((w) => w.has_been_guessed)
     })
 
-    // actions
     function getGuessIdx(guessString) {
         return currentRandomWord.sub_words.findIndex((w) => w.sub_word === guessString)
     }
@@ -79,5 +80,6 @@ export const useCurRandomWord = defineStore('curRandomWord', () => {
         updateSubwordGuessedState,
         longestWordHasBeenGuessed,
         revealYourSecrets,
+        isBackendDataFetched,
     }
 })
