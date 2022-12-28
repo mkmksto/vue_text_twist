@@ -27,10 +27,10 @@ export const useCurRandomWord = defineStore('curRandomWord', () => {
         return longestWords.some((w) => w.has_been_guessed)
     })
 
-    function isBackendDataFetched() {
+    async function isBackendDataFetched() {
         // console.log('promiseeee')
         return new Promise((res) => {
-            if (backendDataFetched) res()
+            if (backendDataFetched) res
         })
     }
 
@@ -86,5 +86,6 @@ export const useCurRandomWord = defineStore('curRandomWord', () => {
         longestWordHasBeenGuessed,
         revealYourSecrets,
         isBackendDataFetched,
+        backendDataFetched,
     }
 })

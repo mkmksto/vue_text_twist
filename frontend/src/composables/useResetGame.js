@@ -3,9 +3,11 @@ import { createApp, nextTick, onMounted } from 'vue'
 import App from '../App.vue'
 import { useCurrentGuessStore } from '../stores/currentGuess'
 import { useCurRandomWord } from '../stores/currentRandomWord'
+import { useSettingsStore } from '../stores/gameSettings'
 import { useGameState } from '../stores/gameState'
 import { useRoundTracker } from '../stores/roundTracker'
 import { useGameScore } from '../stores/score'
+import { useTimer } from '../stores/timer'
 
 export async function useResetGame() {
     // store init
@@ -33,8 +35,14 @@ export async function useResetGame() {
     const score = useGameScore()
     const { resetScore } = score
 
+    const timer = useTimer()
+    const { renewCountdownSecondsLength, renewTimer, stopTimer } = timer
+
+    const settings = useSettingsStore()
+    const { gameSettings } = settings
+
     // actual function stuff
-    // clear header interval
+    stopTimer()
     /** @type {HTMLElement} */
     const nextRoundBtn = window.document.querySelector('.next-round-btn')
     const resetGameBtn = window.document.querySelector('.reset-game-btn')
@@ -44,7 +52,8 @@ export async function useResetGame() {
     clearCurrentRandomWordStore()
     await renewCurrentRandomWordStore()
 
-    // renew header interval
+    renewCountdownSecondsLength(gameSettings.timer)
+    renewTimer()
     clearGuess()
     setWinState(false)
     setLoseState(false)

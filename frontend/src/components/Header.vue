@@ -28,6 +28,7 @@ const { gameSettings } = settings
 
 onMounted(async () => {
     await isBackendDataFetched()
+    console.log('after backend data fetch')
     renewCountdownSecondsLength(gameSettings.timer)
     renewTimer()
 })
