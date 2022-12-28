@@ -50,7 +50,7 @@ export async function useResetGame() {
     nextRoundBtn.disabled = true
     nextRoundBtn.blur()
     clearCurrentRandomWordStore()
-    await renewCurrentRandomWordStore()
+    await renewCurrentRandomWordStore(gameSettings)
 
     renewCountdownSecondsLength(gameSettings.timer)
     renewTimer()

@@ -2,7 +2,6 @@
 import { storeToRefs } from 'pinia'
 import { onMounted } from 'vue'
 import { fetchBackendWord } from '../functions/dataFetching'
-import { useCurrentGuessStore } from '../stores/currentGuess'
 import { useCurRandomWord } from '../stores/currentRandomWord'
 import { useSettingsStore } from '../stores/gameSettings'
 
@@ -11,9 +10,6 @@ const { gameSettings } = storeToRefs(settingStore)
 
 const randomWordStore = useCurRandomWord()
 const { currentRandomWord } = storeToRefs(randomWordStore)
-
-const currentGuessStore = useCurrentGuessStore()
-const { currentGuess } = storeToRefs(currentGuessStore)
 
 onMounted(async () => {
     const backend_resp = await fetchBackendWord(gameSettings.value)
@@ -55,13 +51,9 @@ onMounted(async () => {
     transition: background-color 0.5s ease;
 }
 
-/* .cell {
-    @apply flex justify-center items-center uppercase h-8 w-7 my-1 mx-0.5 bg-white text-white rounded-sm;
-} */
-
 /* basic styling */
 .card {
-    @apply h-[var(--card-height)] w-[var(--card-width)] max-w-4xl flex flex-col bg-neutral-300 flex-wrap rounded-xl p-3;
+    @apply h-[var(--card-height)] w-auto max-w-3xl flex flex-col bg-neutral-300 flex-wrap rounded-xl p-3;
 }
 
 .word-columns {

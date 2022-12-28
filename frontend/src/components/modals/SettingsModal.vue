@@ -18,7 +18,7 @@ const { hideSettingsModal } = useSettingsModal()
 
                 <input
                     type="range"
-                    v-model="gameSettings.min_chars"
+                    v-model.number="gameSettings.min_chars"
                     min="6"
                     max="10"
                     class="range"
@@ -33,7 +33,7 @@ const { hideSettingsModal } = useSettingsModal()
 
                 <input
                     type="range"
-                    v-model="gameSettings.max_chars"
+                    v-model.number="gameSettings.max_chars"
                     min="9"
                     max="13"
                     class="range"
@@ -62,7 +62,7 @@ const { hideSettingsModal } = useSettingsModal()
                 <label for="max-subwords">Max Number of Subwords</label>
                 <input
                     type="range"
-                    v-model="gameSettings.max_subwords"
+                    v-model.number="gameSettings.max_subwords"
                     min="10"
                     max="30"
                     class="range"
@@ -75,7 +75,7 @@ const { hideSettingsModal } = useSettingsModal()
                 <label for="timer">Alloted Time</label>
                 <input
                     type="range"
-                    v-model="gameSettings.timer"
+                    v-model.number="gameSettings.timer"
                     min="10"
                     max="300"
                     class="range"

@@ -16,14 +16,10 @@ def main():
     return english_dictionary.EnglishDict(all_dict_data)
 
 
-@app.route('/')
-def index():
-    return 'HAHjjjjjA!'
-    # return render_template('index.html')
-
-
 @app.route('/api/random_word', methods=['POST'])
-@cross_origin(origins=['http://127.0.0.1:5173', 'http://localhost:5173'])
+@cross_origin(
+    origins=['http://127.0.0.1:5173', 'http://localhost:5173'],
+)
 def get_random_word():
     """Get a random word and its corresponding subwords
     in python dict format
@@ -35,7 +31,7 @@ def get_random_word():
     """
 
     params = {}
-    # params: dict = request.json
+    params: dict = request.json
 
     min_chars = params.get('min_chars', 6)
     max_chars = params.get('max_chars', 12)
@@ -48,9 +44,9 @@ def get_random_word():
         rand_word = eng_dict.get_random_word()
         frequency = eng_dict.get_frequency(rand_word)
         if (
-            len(rand_word) < max_chars
-            and len(rand_word) > min_chars
-            and frequency > diff
+            len(rand_word) <= max_chars
+            and len(rand_word) >= min_chars
+            and frequency >= diff
         ):
             break
 
@@ -68,7 +64,6 @@ def get_random_word():
     ]
     random.shuffle(shuffled_word)
 
-    # print(sub_words)
     return {
         'word': rand_word,
         'sub_words': sub_words,
