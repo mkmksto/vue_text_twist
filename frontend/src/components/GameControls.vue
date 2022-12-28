@@ -100,7 +100,7 @@ async function onNextRound() {
     nextRoundBtn.value.blur()
     revealYourSecrets()
     await sleep(3000)
-    await renewCurrentRandomWordStore()
+    await renewCurrentRandomWordStore(gameSettings)
 
     renewCountdownSecondsLength(gameSettings.timer)
     renewTimer()
