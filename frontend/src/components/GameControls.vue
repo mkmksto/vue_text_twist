@@ -5,9 +5,11 @@ import { useResetGame } from '../composables/useResetGame'
 import { shuffleItems } from '../functions/math'
 import { useCurrentGuessStore } from '../stores/currentGuess'
 import { useCurRandomWord } from '../stores/currentRandomWord'
+import { useSettingsStore } from '../stores/gameSettings'
 import { useGameState } from '../stores/gameState'
 import { useRoundTracker } from '../stores/roundTracker'
 import { useGameScore } from '../stores/score'
+import { useTimer } from '../stores/timer'
 
 // stores
 const randomWordStore = useCurRandomWord()
@@ -33,6 +35,12 @@ const { updateScore, resetScore } = score
 
 const round = useRoundTracker()
 const { moveToNextRound, resetRound } = round
+
+const timer = useTimer()
+const { renewCountdownSecondsLength, renewTimer, stopTimer } = timer
+
+const settings = useSettingsStore()
+const { gameSettings } = settings
 
 // Element refs
 /** @type {HTMLElement} */
@@ -64,7 +72,8 @@ function onGiveUp() {
     revealYourSecrets()
 
     setLoseState(true)
-    // clear header interval
+    stopTimer()
+
     nextRoundBtn.value.disabled = true
     nextRoundBtn.value.blur()
 }
@@ -86,8 +95,8 @@ function onEnterBtn() {
 async function onNextRound() {
     clearGuess()
     setWinState(false)
+    stopTimer()
 
-    // clear header interval
     nextRoundBtn.value.disabled = true
     nextRoundBtn.value.blur()
     revealYourSecrets()
@@ -95,7 +104,8 @@ async function onNextRound() {
     await renewCurrentRandomWordStore()
 
     // renew header interval
-
+    renewCountdownSecondsLength(gameSettings.timer)
+    renewTimer()
     moveToNextRound()
 }
 
