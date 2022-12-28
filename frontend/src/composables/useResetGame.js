@@ -4,6 +4,7 @@ import App from '../App.vue'
 import { useCurrentGuessStore } from '../stores/currentGuess'
 import { useCurRandomWord } from '../stores/currentRandomWord'
 import { useGameState } from '../stores/gameState'
+import { useRoundTracker } from '../stores/roundTracker'
 
 export async function useResetGame() {
     // store init
@@ -25,6 +26,9 @@ export async function useResetGame() {
     const gameState = useGameState()
     const { setWinState, setLoseState } = gameState
 
+    const round = useRoundTracker()
+    const { resetRound } = round
+
     // actual function stuff
     // clear header interval
     /** @type {HTMLElement} */
@@ -41,7 +45,7 @@ export async function useResetGame() {
     setWinState(false)
     setLoseState(false)
 
-    // reset Current Round
+    resetRound()
     // reset Score
     resetGameBtn.blur()
 }
