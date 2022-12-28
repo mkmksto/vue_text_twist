@@ -44,7 +44,7 @@ export const useCurRandomWord = defineStore('curRandomWord', () => {
 
     /**
      * Update the has_been_guessed status of a subword
-     * @param {String} guessString - guess string derived from curreGuess store (from its guessStringOnly prop)
+     * @param {String} guessString - guess string derived from currentGuess store (from its guessStringOnly prop)
      * @param {boolean} bool
      */
     function updateSubwordGuessedState(guessString, bool) {
