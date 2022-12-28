@@ -32,6 +32,7 @@ watch(
     () => {
         if (secondsCountdown.value <= 0 && !winState.value) {
             setLoseState(true)
+            revealYourSecrets()
         } else if (secondsCountdown.value <= 0 && winState.value) {
             revealYourSecrets()
         }
