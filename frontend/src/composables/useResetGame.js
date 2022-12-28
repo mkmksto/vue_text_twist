@@ -19,11 +19,11 @@ export async function useResetGame() {
     const randomWordStore = useCurRandomWord()
     const { renewCurrentRandomWordStore, clearCurrentRandomWordStore } = randomWordStore
 
-    const currentGuessStore = useCurrentGuessStore
+    const currentGuessStore = useCurrentGuessStore()
     const { clearGuess } = currentGuessStore
 
-    const gameState = useGameState
-    const { setWinState } = gameState
+    const gameState = useGameState()
+    const { setWinState, setLoseState } = gameState
 
     // actual function stuff
     // clear header interval
@@ -39,6 +39,7 @@ export async function useResetGame() {
     // renew header interval
     clearGuess()
     setWinState(false)
+    setLoseState(false)
 
     // reset Current Round
     // reset Score

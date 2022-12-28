@@ -122,7 +122,7 @@ onMounted(() => {
 async function onKeyDown(e) {
     await nextTick()
     if (e.repeat) return
-    if (loseState) return
+    if (loseState.value) return
 
     if (e.key === 'Backspace') {
         removeLetterFromGuess()

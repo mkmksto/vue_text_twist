@@ -17,13 +17,8 @@ export const useCurrentGuessStore = defineStore('currentGuessStore', () => {
     }
 
     function clearGuess() {
-        console.log('clearning guess')
         currentGuess.value = []
     }
-
-    // function testGuessIfValid() {
-    //     console.log(guessStringOnly.value)
-    // }
 
     return { currentGuess, addLetterToGuess, removeLetterFromGuess, clearGuess, guessStringOnly }
 })
