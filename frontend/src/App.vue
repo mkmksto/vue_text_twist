@@ -28,9 +28,9 @@ const { revealYourSecrets } = randomWordStore
 watch(
     () => secondsCountdown.value,
     () => {
-        if (secondsCountdown.value <= 0 && !winState) {
+        if (secondsCountdown.value <= 0 && !winState.value) {
             setLoseState(true)
-        } else if (secondsCountdown.value <= 0 && winState) {
+        } else if (secondsCountdown.value <= 0 && winState.value) {
             revealYourSecrets()
         }
     }
@@ -50,7 +50,6 @@ watch(
 
 <style>
 :root {
-    /* --card-width: 500px; */
     --card-width: 1000px;
     --card-height: 400px;
 }

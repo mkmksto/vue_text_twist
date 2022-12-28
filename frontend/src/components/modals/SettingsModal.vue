@@ -81,7 +81,7 @@ const { hideSettingsModal } = useSettingsModal()
                 <input
                     type="range"
                     v-model="gameSettings.timer"
-                    min="30"
+                    min="10"
                     max="300"
                     class="range"
                     id="timer"
