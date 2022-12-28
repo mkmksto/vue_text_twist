@@ -5,6 +5,7 @@ import { useCurrentGuessStore } from '../stores/currentGuess'
 import { useCurRandomWord } from '../stores/currentRandomWord'
 import { useGameState } from '../stores/gameState'
 import { useRoundTracker } from '../stores/roundTracker'
+import { useGameScore } from '../stores/score'
 
 export async function useResetGame() {
     // store init
@@ -29,6 +30,9 @@ export async function useResetGame() {
     const round = useRoundTracker()
     const { resetRound } = round
 
+    const score = useGameScore()
+    const { resetScore } = score
+
     // actual function stuff
     // clear header interval
     /** @type {HTMLElement} */
@@ -46,6 +50,6 @@ export async function useResetGame() {
     setLoseState(false)
 
     resetRound()
-    // reset Score
+    resetScore()
     resetGameBtn.blur()
 }
