@@ -22,11 +22,11 @@ const {
 
 const currentGuessStore = useCurrentGuessStore()
 const { currentGuess, guessStringOnly } = storeToRefs(currentGuessStore)
-const { clearGuess, addLetterToGuess, testGuessIfValid } = currentGuessStore
+const { clearGuess, addLetterToGuess } = currentGuessStore
 
 const gameState = useGameState()
 const { setWinState, setLoseState } = gameState
-const { winState, loseState } = storeToRefs(gameState)
+const { loseState } = storeToRefs(gameState)
 
 const score = useGameScore()
 const { updateScore, resetScore } = score
