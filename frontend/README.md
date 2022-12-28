@@ -6,14 +6,9 @@
 
 -   create a computed promise (?) that resolves when the data from the backend has been fetched, you can maybe await this before doing stuff
 
-# TODO
-
--   update gameState.js gameOverState (computed) to take into account the timer value
-
 # Roadmap
 
--   convert CSS to tailwind
--   update gameState.js
+-   build to dist folder, then copy to `FLask's` `templates` and `static` folders
 -   ESC key exits settings modal
 -   how to icons (prob font awesome) for vue
 -   hover tooltip for keyboard shortcuts
