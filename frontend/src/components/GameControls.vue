@@ -156,11 +156,8 @@ function updateGuessStore(key) {
     if (!clickedLetter) return
 
     // stop if letter with the same uniqueID is already in guess
-    // checks for same IDs
     const letterAlreadyInGuess = currentGuess.value.some((l) => l.id === clickedLetter.id)
-    if (letterAlreadyInGuess) return
-
-    addLetterToGuess(clickedLetter.letter, clickedLetter.id)
+    if (!letterAlreadyInGuess) addLetterToGuess(clickedLetter.letter, clickedLetter.id)
 }
 
 function updateLetterTransfer(key) {
