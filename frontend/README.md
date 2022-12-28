@@ -19,10 +19,11 @@
 -   hover tooltip for keyboard shortcuts
 -   implement pausing (a button, and when you enter settings, hide the current word when game is paused)
 
--   try to check if using dot notation for store functions does work(inpsired by svelte stores)
+-   try to check if using dot notation for store functions does work(inspired by svelte stores)
 -   ! PRACTICE refactoring (creating some retarded branch then name you variables and functions better!)
 -   also practice git then
 -   refactor your stores (and their methods) to have a `$` at the end of their names (to indicate that they actually are store), also to differentiate from local variables and refs
+-   extract the lines @ `app.py` involved in creating the final `sub_words` and `shuffled_word` props
 
 # Future TODO's
 
