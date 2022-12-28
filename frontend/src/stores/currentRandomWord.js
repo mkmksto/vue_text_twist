@@ -9,13 +9,9 @@ export const useCurRandomWord = defineStore('curRandomWord', () => {
         word: '',
     })
 
-    const backendDataFetched = computed(() => {
-        return Boolean(currentRandomWord.word)
-    })
+    const backendDataFetched = computed(() => Boolean(currentRandomWord.word))
 
-    const validLetters = computed(() => {
-        return new Set(currentRandomWord.word)
-    })
+    const validLetters = computed(() => new Set(currentRandomWord.word))
 
     const longestWordHasBeenGuessed = computed(() => {
         // because there can be more than 1 longest word
