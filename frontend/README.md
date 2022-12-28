@@ -14,6 +14,7 @@
 
 -   convert CSS to tailwind
 -   update gameState.js
+-   ESC key exits settings modal
 -   how to icons (prob font awesome) for vue
 -   hover tooltip for keyboard shortcuts
 -   implement pausing (a button, and when you enter settings, hide the current word when game is paused)

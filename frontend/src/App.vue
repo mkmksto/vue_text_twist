@@ -1,12 +1,14 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { watch } from 'vue'
+
 import CurrentWord from './components/CurrentWord.vue'
 import GameControls from './components/GameControls.vue'
 import Header from './components/Header.vue'
 import GameLostModal from './components/modals/GameLostModal.vue'
 import SettingsModal from './components/modals/SettingsModal.vue'
 import Subwords from './components/SubWords.vue'
+
 import { useCurRandomWord } from './stores/currentRandomWord'
 import { useGameState } from './stores/gameState'
 import { useSettingsModal } from './stores/modalVisibility'

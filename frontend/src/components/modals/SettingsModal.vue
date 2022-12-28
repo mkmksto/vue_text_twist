@@ -8,10 +8,6 @@ const settingsStore = useSettingsStore()
 const { gameSettings } = storeToRefs(settingsStore)
 
 const { hideSettingsModal } = useSettingsModal()
-
-// function logUpdated() {
-//     console.log(gameSettings.value)
-// }
 </script>
 
 <template>
@@ -60,7 +56,6 @@ const { hideSettingsModal } = useSettingsModal()
                     <option value="hard">Hard</option>
                     <option value="very_hard">Very Hard</option>
                 </select>
-                <!-- <span class="label-val">2</span> -->
             </div>
 
             <div class="setting">
@@ -122,28 +117,12 @@ button {
 }
 
 .modal {
+    @apply fixed top-0 left-0 h-screen w-screen z-50 flex items-center justify-center;
     font-family: 'Open Sans';
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100vw;
     background-color: rgba(50, 50, 50, 0.4);
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 .modal-card {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 20%;
-    width: 400px;
-    height: 450px;
-    border-radius: 1rem;
-    background-color: white;
-    padding: 1.5rem;
+    @apply flex flex-col absolute top-1/4 w-96 h-max rounded-xl bg-white p-6;
 }
 .range {
     @apply bg-gray-200 rounded-lg appearance-none h-2 mt-auto mb-auto;
