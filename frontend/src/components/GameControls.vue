@@ -15,8 +15,6 @@ const { currentRandomWord, validLetters, longestWordHasBeenGuessed } = storeToRe
 const {
     unTransferLetters,
     renewCurrentRandomWordStore,
-    clearCurrentRandomWordStore,
-    getGuessIdx,
     isGuessInSubwords,
     updateSubwordGuessedState,
     revealYourSecrets,
