@@ -21,6 +21,7 @@
 
 -   ! PRACTICE refactoring (creating some retarded branch then name you variables and functions better!)
 -   also practice git then
+-   refactor your stores (and their methods) to have a `$` at the end of their names (to indicate that they actually are store), also to differentiate from local variables and refs
 
 # Future TODO's
 
