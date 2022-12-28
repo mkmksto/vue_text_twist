@@ -19,10 +19,10 @@
 
 -   DONE implement guessing subwords @ SubWords.vue, each row (from each column) should have a conditional (dynamic?) class that determines whether it shows or not @ the card (also, BG should change when guessed)
 
--   reveal your secrets (on give up, on next round)
--   game lost modal
+-   DONE reveal your secrets (on give up, on next round)
+-   DONE game lost modal
 
--   implement give up btn (invokes a reveal your secrets function, the func simply sets the has_been_guessed prop of each subword to true), prob make this a composable
+-   DONE implement give up btn (invokes a reveal your secrets function, the func simply sets the has_been_guessed prop of each subword to true), prob make this a composable
 -   complete buttons functionality
 -   DONE current round store (functions: increment round, reset round)
 -   DONE current round score store
