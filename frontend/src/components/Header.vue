@@ -17,6 +17,7 @@ const round = useRoundTracker()
 const { gameRound } = storeToRefs(round)
 
 const randomWordStore = useCurRandomWord()
+const { backEndDataFetch } = storeToRefs(randomWordStore)
 const { isBackendDataFetched } = randomWordStore
 
 const timer = useTimer()

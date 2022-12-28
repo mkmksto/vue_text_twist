@@ -10,7 +10,14 @@ export const useCurRandomWord = defineStore('curRandomWord', () => {
     })
 
     const backendDataFetched = computed(() => {
+        console.log(Boolean(currentRandomWord.word))
         return Boolean(currentRandomWord.word)
+        // return new Promise((res) => {
+        //     if (currentRandomWord.word) {
+        //         console.log('current random word exists?', currentRandomWord.word)
+        //         res()
+        //     }
+        // })
     })
 
     const validLetters = computed(() => {
@@ -27,10 +34,12 @@ export const useCurRandomWord = defineStore('curRandomWord', () => {
         return longestWords.some((w) => w.has_been_guessed)
     })
 
-    async function isBackendDataFetched() {
+    function isBackendDataFetched() {
         // console.log('promiseeee')
         return new Promise((res) => {
-            if (backendDataFetched) res
+            if (backendDataFetched) {
+                res()
+            }
         })
     }
 
