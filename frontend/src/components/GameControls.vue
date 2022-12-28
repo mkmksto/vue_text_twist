@@ -82,7 +82,6 @@ function onEnterBtn() {
     const isGuessValid = isGuessInSubwords(guessStringOnly.value)
     if (!isGuessValid) return
 
-    // const guessIdx = getGuessIdx(guessStringOnly.value)
     updateSubwordGuessedState(guessStringOnly.value, true)
     updateScore(guessStringOnly.value)
 
@@ -103,7 +102,6 @@ async function onNextRound() {
     await sleep(3000)
     await renewCurrentRandomWordStore()
 
-    // renew header interval
     renewCountdownSecondsLength(gameSettings.timer)
     renewTimer()
     moveToNextRound()
