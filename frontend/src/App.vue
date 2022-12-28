@@ -1,5 +1,6 @@
 <script setup>
 import { storeToRefs } from 'pinia'
+import { watch } from 'vue'
 import CurrentWord from './components/CurrentWord.vue'
 import GameControls from './components/GameControls.vue'
 import Header from './components/Header.vue'
@@ -8,12 +9,24 @@ import SettingsModal from './components/modals/SettingsModal.vue'
 import Subwords from './components/SubWords.vue'
 import { useGameState } from './stores/gameState'
 import { useSettingsModal } from './stores/modalVisibility'
+import { useTimer } from './stores/timer'
 
 const store = useSettingsModal()
 const { isSettingsModalVisible } = storeToRefs(store)
 
 const gameState = useGameState()
 const { loseState } = storeToRefs(gameState)
+const { setLoseState } = gameState
+
+const timer = useTimer()
+const { secondsCountdown } = storeToRefs(timer)
+
+watch(
+    () => secondsCountdown.value,
+    () => {
+        if (secondsCountdown.value <= 0) setLoseState(true)
+    }
+)
 </script>
 
 <template>
