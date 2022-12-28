@@ -7,8 +7,9 @@ export const useTimer = defineStore('useTimer', () => {
 
     const countdownString = computed(() => {
         const minutes = Math.floor(secondsCountdown.value / 60)
-        let seconds = (secondsCountdown - minutes * 60).toString()
+        let seconds = (secondsCountdown.value - minutes * 60).toString()
         seconds = seconds.length > 1 ? seconds : `0${seconds}`
+        // console.log(seconds)
         return `0${minutes}: ${seconds}`
     })
 

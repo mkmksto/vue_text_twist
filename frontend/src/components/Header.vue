@@ -1,8 +1,12 @@
 <script setup>
 import { storeToRefs } from 'pinia'
+import { onMounted } from 'vue'
+import { useCurRandomWord } from '../stores/currentRandomWord'
+import { useSettingsStore } from '../stores/gameSettings'
 import { useSettingsModal } from '../stores/modalVisibility'
 import { useRoundTracker } from '../stores/roundTracker'
 import { useGameScore } from '../stores/score'
+import { useTimer } from '../stores/timer'
 
 const { showSettingsModal } = useSettingsModal()
 
@@ -11,6 +15,22 @@ const { gameScore } = storeToRefs(score)
 
 const round = useRoundTracker()
 const { gameRound } = storeToRefs(round)
+
+const randomWordStore = useCurRandomWord()
+const { isBackendDataFetched } = randomWordStore
+
+const timer = useTimer()
+const { countdownString } = storeToRefs(timer)
+const { renewCountdownSecondsLength, renewTimer } = timer
+
+const settings = useSettingsStore()
+const { gameSettings } = settings
+
+onMounted(async () => {
+    await isBackendDataFetched()
+    renewCountdownSecondsLength(gameSettings.timer)
+    renewTimer()
+})
 </script>
 
 <template>
@@ -22,7 +42,7 @@ const { gameRound } = storeToRefs(round)
             >
             <span class="game-info"
                 >Time:
-                <li class="current-info">00:00</li></span
+                <li class="current-info">{{ countdownString }}</li></span
             >
             <span class="game-info"
                 >Round:

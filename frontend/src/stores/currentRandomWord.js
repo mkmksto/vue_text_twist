@@ -9,10 +9,8 @@ export const useCurRandomWord = defineStore('curRandomWord', () => {
         word: '',
     })
 
-    const isBackendDataFetched = computed(() => {
-        return new Promise((res) => {
-            if (!currentRandomWord.word) res
-        })
+    const backendDataFetched = computed(() => {
+        return Boolean(currentRandomWord.word)
     })
 
     const validLetters = computed(() => {
@@ -28,6 +26,13 @@ export const useCurRandomWord = defineStore('curRandomWord', () => {
         )
         return longestWords.some((w) => w.has_been_guessed)
     })
+
+    function isBackendDataFetched() {
+        // console.log('promiseeee')
+        return new Promise((res) => {
+            if (backendDataFetched) res()
+        })
+    }
 
     function getGuessIdx(guessString) {
         return currentRandomWord.sub_words.findIndex((w) => w.sub_word === guessString)
