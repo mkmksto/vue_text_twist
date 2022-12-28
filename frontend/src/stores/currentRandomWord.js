@@ -10,14 +10,7 @@ export const useCurRandomWord = defineStore('curRandomWord', () => {
     })
 
     const backendDataFetched = computed(() => {
-        console.log(Boolean(currentRandomWord.word))
         return Boolean(currentRandomWord.word)
-        // return new Promise((res) => {
-        //     if (currentRandomWord.word) {
-        //         console.log('current random word exists?', currentRandomWord.word)
-        //         res()
-        //     }
-        // })
     })
 
     const validLetters = computed(() => {
@@ -26,7 +19,6 @@ export const useCurRandomWord = defineStore('curRandomWord', () => {
 
     const longestWordHasBeenGuessed = computed(() => {
         // because there can be more than 1 longest word
-
         const wordLen = currentRandomWord.word.length
         const longestWords = currentRandomWord.sub_words.filter(
             (w) => w.sub_word.length === wordLen
@@ -34,14 +26,13 @@ export const useCurRandomWord = defineStore('curRandomWord', () => {
         return longestWords.some((w) => w.has_been_guessed)
     })
 
-    function isBackendDataFetched() {
-        // console.log('promiseeee')
-        return new Promise((res) => {
-            if (backendDataFetched) {
-                res()
-            }
-        })
-    }
+    // function isBackendDataFetched() {
+    //     return new Promise((res) => {
+    //         if (backendDataFetched) {
+    //             res(backendDataFetched)
+    //         }
+    //     })
+    // }
 
     function getGuessIdx(guessString) {
         return currentRandomWord.sub_words.findIndex((w) => w.sub_word === guessString)
@@ -94,7 +85,6 @@ export const useCurRandomWord = defineStore('curRandomWord', () => {
         updateSubwordGuessedState,
         longestWordHasBeenGuessed,
         revealYourSecrets,
-        isBackendDataFetched,
         backendDataFetched,
     }
 })
