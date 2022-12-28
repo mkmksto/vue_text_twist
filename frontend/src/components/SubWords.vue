@@ -53,7 +53,7 @@ onMounted(async () => {
 
 /* basic styling */
 .card {
-    @apply h-[var(--card-height)] w-auto max-w-3xl flex flex-col bg-neutral-300 flex-wrap rounded-xl p-3;
+    @apply h-[var(--card-height)] min-w-fit max-w-fit flex flex-col bg-neutral-300 flex-wrap rounded-xl p-3;
 }
 
 .word-columns {
