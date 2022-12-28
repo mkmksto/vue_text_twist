@@ -3,20 +3,21 @@ import { computed, ref } from 'vue'
 
 export const useTimer = defineStore('useTimer', () => {
     const secondsCountdown = ref(120)
-    // const secondsRemaining = ref(120)
 
     const countdownString = computed(() => {
         const minutes = Math.floor(secondsCountdown.value / 60)
         let seconds = (secondsCountdown.value - minutes * 60).toString()
         seconds = seconds.length > 1 ? seconds : `0${seconds}`
-        // console.log(seconds)
         return `0${minutes}: ${seconds}`
     })
 
     let timer
     function renewTimer() {
         timer = setInterval(() => {
-            if (secondsCountdown.value <= 0) clearInterval(timer)
+            if (secondsCountdown.value <= 0) {
+                clearInterval(timer)
+                return
+            }
 
             secondsCountdown.value--
         }, 1000)
