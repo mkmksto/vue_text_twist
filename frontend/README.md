@@ -12,6 +12,7 @@
 -   ! FIX: change the code for `Subwords`. The current code shows the words if i use dark reader. Simply don't include the letter if the word has not yet been guessed.
 -   ESC key exits settings modal
 -   how to icons (prob font awesome) for vue
+-   option to change settings on game lost
 -   hover tooltip for keyboard shortcuts
 -   implement pausing (a button, and when you enter settings, hide the current word when game is paused)
 
