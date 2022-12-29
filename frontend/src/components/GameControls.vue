@@ -139,7 +139,7 @@ async function onKeyDown(e) {
         onEnterBtn()
     } else if (e.key === 'Escape') {
         returnLettersToOriginalPlace()
-    } else if (Array.from(validLetters.value).includes(e.key)) {
+    } else if (validLetters.value.includes(e.key)) {
         updateGuessStore(e.key)
         updateLetterTransfer(e.key)
     }
