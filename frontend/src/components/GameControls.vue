@@ -107,10 +107,6 @@ async function onNextRound() {
     moveToNextRound()
 }
 
-async function onResetGame() {
-    useResetGame()
-}
-
 function sleep(ms) {
     return new Promise((res) => setTimeout(res, ms))
 }
@@ -188,7 +184,7 @@ function removeLetterFromGuess() {
         <button class="btn" @click="onGiveUp" ref="giveUpBtn">Give Up</button>
         <button class="btn" @click="returnLettersToOriginalPlace">Clear</button>
         <button class="btn" @click="onEnterBtn">Enter</button>
-        <button class="btn reset-game-btn" @click="onResetGame" ref="resetGameBtn">
+        <button class="btn reset-game-btn" @click="useResetGame" ref="resetGameBtn">
             Reset Game
         </button>
         <button class="btn next-round-btn" ref="nextRoundBtn" @click="onNextRound" disabled>
