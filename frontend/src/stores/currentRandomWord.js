@@ -63,7 +63,7 @@ export const useCurRandomWord = defineStore('curRandomWord', () => {
     function clearCurrentRandomWordStore() {
         currentRandomWord.shuffled_word = []
         currentRandomWord.sub_words = []
-        currentRandomWord.word = []
+        currentRandomWord.word = ''
     }
 
     function revealYourSecrets() {
