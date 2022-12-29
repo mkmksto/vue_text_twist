@@ -19,6 +19,7 @@
 -   also practice git then
 -   refactor your stores (and their methods) to have a `$` at the end of their names (to indicate that they actually are store), also to differentiate from local variables and refs
 -   extract the lines @ `app.py` involved in creating the final `sub_words` and `shuffled_word` props
+-   test commit
 
 # Future TODO's
 
