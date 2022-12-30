@@ -16,6 +16,11 @@ def main():
     return english_dictionary.EnglishDict(all_dict_data)
 
 
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+
 @app.route('/api/random_word', methods=['POST'])
 @cross_origin(
     origins=['http://127.0.0.1:5173', 'http://localhost:5173'],

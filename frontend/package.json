@@ -4,7 +4,9 @@
     "private": true,
     "scripts": {
         "dev": "vite",
-        "build": "vite build",
+        "build": "vite build && npm run flask-copy",
+        "flask-copy": "mkdir ..\\backend\\static && mkdir ..\\backend\\templates && cp dist/index.html ../backend/templates && cp -r dist/assets/. ../backend/static && npm run postbuild",
+        "postbuild": "bash flask_build.sh",
         "preview": "vite preview",
         "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
     },
