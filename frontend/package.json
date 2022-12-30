@@ -5,7 +5,8 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build && npm run flask-copy",
-        "flask-copy": "mkdir ..\\backend\\static && mkdir ..\\backend\\templates && cp dist/index.html ../backend/templates && cp -r dist/assets/. ../backend/static && npm run postbuild",
+        "flask-rm-dir": "rm -r \\backend\\static ; rm -r \\backend\\templates && npm run flask-copy",
+        "flask-copy": "mkdir ..\\backend\\static && mkdir ..\\backend\\templates && cp -R 'dist/index.html' ../backend/templates && cp -R dist/assets/. ../backend/static && npm run postbuild",
         "postbuild": "bash flask_build.sh",
         "preview": "vite preview",
         "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
