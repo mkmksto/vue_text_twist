@@ -52,8 +52,9 @@ export async function useResetGame() {
     clearCurrentRandomWordStore()
     await renewCurrentRandomWordStore(gameSettings)
 
-    renewCountdownSecondsLength(gameSettings.timer)
-    renewTimer()
+    //  do this from inside `Header.vue`'s watcher instead
+    // renewCountdownSecondsLength(gameSettings.timer)
+    // renewTimer()
     clearGuess()
     setWinState(false)
     setLoseState(false)

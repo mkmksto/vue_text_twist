@@ -21,7 +21,7 @@ const { backendDataFetched } = storeToRefs(randomWordStore)
 
 const timer = useTimer()
 const { countdownString } = storeToRefs(timer)
-const { renewCountdownSecondsLength, renewTimer } = timer
+const { renewCountdownSecondsLength, renewTimer, stopTimer } = timer
 
 const settings = useSettingsStore()
 const { gameSettings } = settings
@@ -30,6 +30,7 @@ watch(
     () => backendDataFetched.value,
     () => {
         if (backendDataFetched.value === true) {
+            stopTimer()
             renewCountdownSecondsLength(gameSettings.timer)
             renewTimer()
         }
