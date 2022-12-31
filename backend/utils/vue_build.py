@@ -6,7 +6,9 @@ from bs4 import BeautifulSoup
 
 
 def main():
-    # index_html = glob.glob('../templates/index.html')[0]
+    """Largely useless now lol
+    superseded by flask_build.sh @ the frontend directory
+    """
     index_html = glob.glob('../../frontend/dist/index.html')[0]
     index_html = os.path.abspath(index_html)
     print(index_html)
@@ -15,6 +17,8 @@ def main():
         # print(soup)
 
     print(soup)
+
+    a = [1,2,3,4,5,6,7,8,9,'1', {'1', 1}, {'2', 2}]
 
 
 if __name__ == '__main__':
