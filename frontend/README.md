@@ -14,7 +14,13 @@
 
 # Setting up black
 
--
+-   ensure `black is installed` from the pip install step
+-   if black doesn't format on save, check if vscode is detecting the proper interpreter path (had a case of black not formatting because vscode couldn't find the path to the interpreter)
+
+# Configuring black
+
+-   (no need to install the VScode extension for black AFAIK), do check tho if they do make a better plugin in the future
+-   create a file `pyproject.toml` at the root of the folder (should be @ the same level as `.gitignore`) if it doesn't already exist yet
 
 # Building instructions
 
