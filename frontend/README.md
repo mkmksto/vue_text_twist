@@ -1,22 +1,27 @@
 # Installation instructions
-- (backend installation steps)
-- `git clone`
-- to clone to the same folder do `git clone git@<> .` where . is the current directory
-- on `linux`: `pip3 install virtualenv`
-- do virtualenv path/to/venv
-- if `virtualenv` is not recognized by the shell, do `python3 -m virtualenv /path/to/venv`
-- `source /path/to/venv/bin/activate`
-- remember to check that the virtualenv has a minimal setup using `pip list` or `pip freeze` (might need to use pip3 on linux)
-- while inside the virtual environment, do `pip3 install -r requirements.txt`
-- (frontend installation steps)
-- `cd backend`, then `pnpm i`
+
+-   (backend installation steps)
+-   `git clone`
+-   to clone to the same folder do `git clone git@<> .` where . is the current directory
+-   on `linux`: `pip3 install virtualenv`
+-   do virtualenv path/to/venv
+-   if `virtualenv` is not recognized by the shell, do `python3 -m virtualenv /path/to/venv`
+-   `source /path/to/venv/bin/activate`
+-   remember to check that the virtualenv has a minimal setup using `pip list` or `pip freeze` (might need to use pip3 on linux)
+-   while inside the virtual environment, do `pip3 install -r requirements.txt`
+-   (frontend installation steps)
+-   `cd backend`, then `pnpm i`
+
+# Setting up black
+
+-
 
 # Building instructions
-- `pnpm build`
-- above command would run `vite build` in addition to removing the `templates` and `static` folders inside `backend` if they exist
-- would then run a series of shell commands to copy the `html`, `css` and `js` files from `frontend/dist` to the proper flask folders
-- last script is a shell script to rename the `css`'s href and the `js` src to point to the proper flask folders using `sed` (some sort of shell regex i suppose)
 
+-   `pnpm build`
+-   above command would run `vite build` in addition to removing the `templates` and `static` folders inside `backend` if they exist
+-   would then run a series of shell commands to copy the `html`, `css` and `js` files from `frontend/dist` to the proper flask folders
+-   last script is a shell script to rename the `css`'s href and the `js` src to point to the proper flask folders using `sed` (some sort of shell regex i suppose)
 
 # changes from svelte ver
 
