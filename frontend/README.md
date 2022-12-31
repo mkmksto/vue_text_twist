@@ -11,6 +11,12 @@
 - (frontend installation steps)
 - `cd backend`, then `pnpm i`
 
+# Building instructions
+- `pnpm build`
+- above command would run `vite build` in addition to removing the `templates` and `static` folders inside `backend` if they exist
+- would then run a series of shell commands to copy the `html`, `css` and `js` files from `frontend/dist` to the proper flask folders
+- last script is a shell script to rename the `css`'s href and the `js` src to point to the proper flask folders using `sed` (some sort of shell regex i suppose)
+
 
 # changes from svelte ver
 
