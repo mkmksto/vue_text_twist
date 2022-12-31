@@ -4,9 +4,9 @@
     "private": true,
     "scripts": {
         "dev": "vite",
-        "build": "vite build ; pnpm flask-rm-dir",
-        "flask-rm-dir": "rm -rf ../backend/static ; rm -rf ../backend/templates ; pnpm flask-copy",
-        "flask-copy": "mkdir ../backend/static && mkdir ../backend/templates ; cp -R 'dist/index.html' ../backend/templates ; cp -R dist/assets/. ../backend/static ; pnpm postbuild",
+        "build": "vite build && pnpm flask-rm-dir",
+        "flask-rm-dir": "rm -rf ../backend/static && rm -rf ../backend/templates && pnpm flask-copy",
+        "flask-copy": "mkdir ../backend/static && mkdir ../backend/templates && cp -R 'dist/index.html' ../backend/templates && cp -R dist/assets/. ../backend/static && pnpm postbuild",
         "postbuild": "sh flask_build.sh",
         "preview": "vite preview",
         "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
