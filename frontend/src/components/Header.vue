@@ -53,7 +53,9 @@ watch(
                 >Round:
                 <li class="current-info">{{ gameRound }}</li></span
             >
-            <li @click="showSettingsModal" class="icons">Settings</li>
+            <li @click="showSettingsModal" class="icons">
+                <font-awesome-icon icon="fa-solid fa-gear"></font-awesome-icon>
+            </li>
         </ul>
     </nav>
 </template>
