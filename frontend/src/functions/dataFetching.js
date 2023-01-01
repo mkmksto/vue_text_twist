@@ -8,7 +8,7 @@ export async function fetchBackendWord(gameSettings) {
     const res = await fetch('https://vue-text-twist.vercel.app/api/random_word', {
         method: 'POST',
         headers: {
-            Accept: 'application/json',
+            'Accept': 'application/json',
             'Access-Control-Allow-Origin': '*',
             'Content-type': 'application/json',
         },
