@@ -20,6 +20,10 @@ def main():
 def index():
     return render_template('index.html')
 
+@app.route('/api_test')
+def api_test():
+    return {'api': 'test'}
+
 
 @app.route('/api/random_word', methods=['POST'])
 @cross_origin(
