@@ -27,7 +27,8 @@ def api_test():
 
 @app.route('/api/random_word', methods=['POST'])
 @cross_origin(
-    origins=['http://127.0.0.1:5173', 'http://localhost:5173', 'https://vue-text-twist.vercel.app/'],
+    origins=['http://127.0.0.1:5173', 'http://localhost:5173', 'https://vue-text-twist.vercel.app/', 'http://127.0.0.1:5000', 'http://127.0.0.1:5000/api/random_word'
+]
 )
 def get_random_word():
     """Get a random word and its corresponding subwords
