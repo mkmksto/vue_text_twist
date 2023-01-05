@@ -7,7 +7,7 @@ export async function fetchBackendWord(gameSettings) {
     const fetchUrl = window.location.href.includes("vercel")
         ? "https://vue-text-twist.vercel.app/api/random_word"
         : "http://127.0.0.1:5000/api/random_word"
-    //
+    console.log("from new double quotes thing")
     const res = await fetch(fetchUrl, {
         method: "POST",
         headers: {
