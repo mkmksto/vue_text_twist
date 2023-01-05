@@ -14,24 +14,24 @@ def main():
     return english_dictionary.EnglishDict(all_dict_data)
 
 
-@app.route('/')
+@app.route("/")
 def index():
-    return render_template('index.html')
+    return render_template("index.html")
 
 
-@app.route('/api_test')
+@app.route("/api_test")
 def api_test():
-    return {'api': 'test'}
+    return {"api": "test"}
 
 
-@app.route('/api/random_word', methods=['POST'])
+@app.route("/api/random_word", methods=["POST"])
 @cross_origin(
     origins=[
-        'http://127.0.0.1:5173',
-        'http://localhost:5173',
-        'https://vue-text-twist.vercel.app/',
-        'http://127.0.0.1:5000',
-        'http://127.0.0.1:5000/api/random_word',
+        "http://127.0.0.1:5173",
+        "http://localhost:5173",
+        "https://vue-text-twist.vercel.app/",
+        "http://127.0.0.1:5000",
+        "http://127.0.0.1:5000/api/random_word",
     ]
 )
 def get_random_word():
@@ -47,14 +47,14 @@ def get_random_word():
     params = {}
     params: dict = request.json
 
-    min_chars = params.get('min_chars', 6)
-    max_chars = params.get('max_chars', 12)
-    diff: str = params.get('difficulty', 'medium')
+    min_chars = params.get("min_chars", 6)
+    max_chars = params.get("max_chars", 12)
+    diff: str = params.get("difficulty", "medium")
     diff: int = game_settings.diff_map.get(diff)
-    max_subwords = params.get('max_subwords', 20)
+    max_subwords = params.get("max_subwords", 20)
 
     while True:
-        print('fetching...')
+        print("fetching...")
         rand_word = eng_dict.get_random_word()
         frequency = eng_dict.get_frequency(rand_word)
         if (
@@ -67,26 +67,26 @@ def get_random_word():
     sub_words = eng_dict.get_subwords(rand_word, max_num=max_subwords)
     sub_words.insert(0, rand_word)
     sub_words = [
-        {'sub_word': sub_word, 'id': str(uuid.uuid4()), 'has_been_guessed': False}
+        {"sub_word": sub_word, "id": str(uuid.uuid4()), "has_been_guessed": False}
         for sub_word in sub_words
     ]
 
     shuffled_word = list(rand_word)
     shuffled_word = [
-        {'letter': letter, 'id': str(uuid.uuid4()), 'letter_transferred': False}
+        {"letter": letter, "id": str(uuid.uuid4()), "letter_transferred": False}
         for letter in shuffled_word
     ]
     random.shuffle(shuffled_word)
 
     return jsonify(
         {
-            'word': rand_word,
-            'sub_words': sub_words,
-            'shuffled_word': shuffled_word,
+            "word": rand_word,
+            "sub_words": sub_words,
+            "shuffled_word": shuffled_word,
         }
     )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     eng_dict = main()
     app.run(debug=True)

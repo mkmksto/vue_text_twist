@@ -54,6 +54,6 @@ def get_all_dict_data(file_paths: list[str]) -> dict:
     return consolidated_dict
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     dict_file_paths = get_dict_file_paths(debug=True)
     print(dict_file_paths)

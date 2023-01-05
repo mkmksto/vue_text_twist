@@ -91,7 +91,7 @@ class EnglishDict:
         return []
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     dict_file_paths = json_utils.get_dict_file_paths(debug=True)
     all_data = json_utils.get_all_dict_data(dict_file_paths)
