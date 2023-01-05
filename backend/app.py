@@ -1,9 +1,7 @@
 import random
-import time
 import uuid
-from pprint import pprint
 
-from flask import Flask, render_template, request
+from flask import Flask, jsonify, render_template, request
 from flask_cors import cross_origin
 from utils import english_dictionary, game_settings, json_utils
 
@@ -20,6 +18,7 @@ def main():
 def index():
     return render_template('index.html')
 
+
 @app.route('/api_test')
 def api_test():
     return {'api': 'test'}
@@ -27,8 +26,13 @@ def api_test():
 
 @app.route('/api/random_word', methods=['POST'])
 @cross_origin(
-    origins=['http://127.0.0.1:5173', 'http://localhost:5173', 'https://vue-text-twist.vercel.app/', 'http://127.0.0.1:5000', 'http://127.0.0.1:5000/api/random_word'
-]
+    origins=[
+        'http://127.0.0.1:5173',
+        'http://localhost:5173',
+        'https://vue-text-twist.vercel.app/',
+        'http://127.0.0.1:5000',
+        'http://127.0.0.1:5000/api/random_word',
+    ]
 )
 def get_random_word():
     """Get a random word and its corresponding subwords
@@ -74,11 +78,13 @@ def get_random_word():
     ]
     random.shuffle(shuffled_word)
 
-    return {
-        'word': rand_word,
-        'sub_words': sub_words,
-        'shuffled_word': shuffled_word,
-    }
+    return jsonify(
+        {
+            'word': rand_word,
+            'sub_words': sub_words,
+            'shuffled_word': shuffled_word,
+        }
+    )
 
 
 if __name__ == '__main__':

@@ -1,3 +1,9 @@
+# IMPORTANT! (issues regarding python)
+
+-   ensure that vscode always selects the venv python binary (`venv/bin/python` in linux, `venv/Scripts/python` for windows)
+-   also ensure that pylint is installed inside the venv, also check pylint's path inside workspace settings
+-   if in doubt, just checked the root folder's `.vscode` folder
+
 # Installation instructions
 
 -   (backend installation steps)

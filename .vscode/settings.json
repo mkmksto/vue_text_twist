@@ -2,6 +2,10 @@
   "cSpell.words": ["pinia", "Subword"],
   "python.linting.pylintEnabled": true,
   "python.linting.enabled": true,
+  // FOR WINDOWS ONLY!
   // "python.defaultInterpreterPath": "vue_text_twist/backend/tt_backend_venv/Scripts/python",
-  "python.linting.pylintPath": "vue_text_twist/backend/Scripts/pylint"
+  "python.defaultInterpreterPath": "vue_text_twist/backend/tt_py_venv/bin/python",
+  // below is the WINDOWS pylint path
+  // "python.linting.pylintPath": "vue_text_twist/backend/Scripts/pylint",
+  "python.linting.pylintPath": "vue_text_twist/backend/tt_py_venv/bin/pylint"
 }
