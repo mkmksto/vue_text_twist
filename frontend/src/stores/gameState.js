@@ -1,7 +1,7 @@
-import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { defineStore } from "pinia"
+import { ref } from "vue"
 
-export const useGameState = defineStore('gameState', () => {
+export const useGameState = defineStore("gameState", () => {
     const winState = ref(false)
     const loseState = ref(false)
 

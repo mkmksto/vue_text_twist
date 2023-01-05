@@ -1,5 +1,5 @@
 <script setup>
-import { useResetGame } from '../../composables/useResetGame'
+import { useResetGame } from "../../composables/useResetGame"
 </script>
 
 <template>

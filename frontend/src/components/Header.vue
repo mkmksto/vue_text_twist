@@ -1,12 +1,12 @@
 <script setup>
-import { storeToRefs } from 'pinia'
-import { watch } from 'vue'
-import { useCurRandomWord } from '../stores/currentRandomWord'
-import { useSettingsStore } from '../stores/gameSettings'
-import { useSettingsModal } from '../stores/modalVisibility'
-import { useRoundTracker } from '../stores/roundTracker'
-import { useGameScore } from '../stores/score'
-import { useTimer } from '../stores/timer'
+import { storeToRefs } from "pinia"
+import { watch } from "vue"
+import { useCurRandomWord } from "../stores/currentRandomWord"
+import { useSettingsStore } from "../stores/gameSettings"
+import { useSettingsModal } from "../stores/modalVisibility"
+import { useRoundTracker } from "../stores/roundTracker"
+import { useGameScore } from "../stores/score"
+import { useTimer } from "../stores/timer"
 
 const { showSettingsModal } = useSettingsModal()
 
@@ -71,7 +71,7 @@ watch(
 
 .game-info {
     @apply flex;
-    font-family: 'Open Sans';
+    font-family: "Open Sans";
 }
 
 .current-info {

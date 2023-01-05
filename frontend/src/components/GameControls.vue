@@ -1,15 +1,15 @@
 <script setup>
-import { storeToRefs } from 'pinia'
-import { nextTick, onMounted, ref } from 'vue'
-import { useResetGame } from '../composables/useResetGame'
-import { shuffleItems } from '../functions/math'
-import { useCurrentGuessStore } from '../stores/currentGuess'
-import { useCurRandomWord } from '../stores/currentRandomWord'
-import { useSettingsStore } from '../stores/gameSettings'
-import { useGameState } from '../stores/gameState'
-import { useRoundTracker } from '../stores/roundTracker'
-import { useGameScore } from '../stores/score'
-import { useTimer } from '../stores/timer'
+import { storeToRefs } from "pinia"
+import { nextTick, onMounted, ref } from "vue"
+import { useResetGame } from "../composables/useResetGame"
+import { shuffleItems } from "../functions/math"
+import { useCurrentGuessStore } from "../stores/currentGuess"
+import { useCurRandomWord } from "../stores/currentRandomWord"
+import { useSettingsStore } from "../stores/gameSettings"
+import { useGameState } from "../stores/gameState"
+import { useRoundTracker } from "../stores/roundTracker"
+import { useGameScore } from "../stores/score"
+import { useTimer } from "../stores/timer"
 
 // stores
 const randomWordStore = useCurRandomWord()
@@ -115,7 +115,7 @@ function sleep(ms) {
  * keyboard inputs
  */
 onMounted(() => {
-    window.addEventListener('keydown', (e) => {
+    window.addEventListener("keydown", (e) => {
         onKeyDown(e)
     })
 })
@@ -126,14 +126,14 @@ async function onKeyDown(e) {
     if (e.repeat) return
     if (loseState.value) return
 
-    if (e.key === 'Backspace') {
+    if (e.key === "Backspace") {
         removeLetterFromGuess()
         await sleep(200)
-    } else if (e.key === ' ') {
+    } else if (e.key === " ") {
         shuffle()
-    } else if (e.key === 'Enter') {
+    } else if (e.key === "Enter") {
         onEnterBtn()
-    } else if (e.key === 'Escape') {
+    } else if (e.key === "Escape") {
         returnLettersToOriginalPlace()
     } else if (validLetters.value.includes(e.key)) {
         updateGuessStore(e.key)

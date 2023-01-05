@@ -1,7 +1,7 @@
-import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
+import { defineStore } from "pinia"
+import { computed, ref } from "vue"
 
-export const useTimer = defineStore('useTimer', () => {
+export const useTimer = defineStore("useTimer", () => {
     const secondsCountdown = ref(120)
 
     const countdownString = computed(() => {

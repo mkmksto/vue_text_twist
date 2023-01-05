@@ -1,8 +1,8 @@
 <script setup>
-import { storeToRefs } from 'pinia'
-import { useResetGame } from '../../composables/useResetGame'
-import { useSettingsStore } from '../../stores/gameSettings'
-import { useSettingsModal } from '../../stores/modalVisibility'
+import { storeToRefs } from "pinia"
+import { useResetGame } from "../../composables/useResetGame"
+import { useSettingsStore } from "../../stores/gameSettings"
+import { useSettingsModal } from "../../stores/modalVisibility"
 
 const settingsStore = useSettingsStore()
 const { gameSettings } = storeToRefs(settingsStore)
@@ -118,7 +118,7 @@ button {
 
 .modal {
     @apply fixed top-0 left-0 h-screen w-screen z-50 flex items-center justify-center;
-    font-family: 'Open Sans';
+    font-family: "Open Sans";
     background-color: rgba(50, 50, 50, 0.4);
 }
 .modal-card {

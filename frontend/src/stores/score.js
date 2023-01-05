@@ -1,7 +1,7 @@
-import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { defineStore } from "pinia"
+import { ref } from "vue"
 
-export const useGameScore = defineStore('gameScore', () => {
+export const useGameScore = defineStore("gameScore", () => {
     const gameScore = ref(0)
 
     function updateScore(guessString) {

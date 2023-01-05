@@ -1,7 +1,7 @@
-import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { defineStore } from "pinia"
+import { ref } from "vue"
 
-export const useSettingsModal = defineStore('settingsModal', () => {
+export const useSettingsModal = defineStore("settingsModal", () => {
     const isSettingsModalVisible = ref(false)
 
     function showSettingsModal() {

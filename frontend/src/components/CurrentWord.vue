@@ -1,7 +1,7 @@
 <script setup>
-import { storeToRefs } from 'pinia'
-import { useCurrentGuessStore } from '../stores/currentGuess'
-import { useCurRandomWord } from '../stores/currentRandomWord'
+import { storeToRefs } from "pinia"
+import { useCurrentGuessStore } from "../stores/currentGuess"
+import { useCurRandomWord } from "../stores/currentRandomWord"
 
 const randomWordStore = useCurRandomWord()
 const { currentRandomWord } = storeToRefs(randomWordStore)

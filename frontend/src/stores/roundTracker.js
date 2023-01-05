@@ -1,7 +1,7 @@
-import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { defineStore } from "pinia"
+import { ref } from "vue"
 
-export const useRoundTracker = defineStore('roundTracker', () => {
+export const useRoundTracker = defineStore("roundTracker", () => {
     const gameRound = ref(1)
 
     function moveToNextRound() {

@@ -1,9 +1,9 @@
 <script setup>
-import { storeToRefs } from 'pinia'
-import { onMounted } from 'vue'
-import { fetchBackendWord } from '../functions/dataFetching'
-import { useCurRandomWord } from '../stores/currentRandomWord'
-import { useSettingsStore } from '../stores/gameSettings'
+import { storeToRefs } from "pinia"
+import { onMounted } from "vue"
+import { fetchBackendWord } from "../functions/dataFetching"
+import { useCurRandomWord } from "../stores/currentRandomWord"
+import { useSettingsStore } from "../stores/gameSettings"
 
 const settingStore = useSettingsStore()
 const { gameSettings } = storeToRefs(settingStore)
