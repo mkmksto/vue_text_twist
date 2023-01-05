@@ -1,0 +1,16 @@
+{
+  "name": "vue_text_twist",
+  "version": "0.0.0",
+  "description": "actual package.json is located inside frontend",
+  "scripts": {
+    "dev": "cd frontend && pnpm dev",
+    "build": "cd frontend && pnpm build",
+    "fei": "cd frontend && pnpm install",
+    "py-venv-init": "cd backend && python3 -m virtualenv tt_py_venv",
+    "py-install": "cd backend && source tt_py_venv/bin/activate && pip3 install -r requirements.txt",
+    "py-dev": "cd backend && python3 app.py"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
