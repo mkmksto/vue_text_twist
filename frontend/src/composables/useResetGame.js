@@ -1,13 +1,13 @@
-import { createPinia } from 'pinia'
-import { createApp, nextTick, onMounted } from 'vue'
-import App from '../App.vue'
-import { useCurrentGuessStore } from '../stores/currentGuess'
-import { useCurRandomWord } from '../stores/currentRandomWord'
-import { useSettingsStore } from '../stores/gameSettings'
-import { useGameState } from '../stores/gameState'
-import { useRoundTracker } from '../stores/roundTracker'
-import { useGameScore } from '../stores/score'
-import { useTimer } from '../stores/timer'
+import { createPinia } from "pinia"
+import { createApp, nextTick, onMounted } from "vue"
+import App from "../App.vue"
+import { useCurrentGuessStore } from "../stores/currentGuess"
+import { useCurRandomWord } from "../stores/currentRandomWord"
+import { useSettingsStore } from "../stores/gameSettings"
+import { useGameState } from "../stores/gameState"
+import { useRoundTracker } from "../stores/roundTracker"
+import { useGameScore } from "../stores/score"
+import { useTimer } from "../stores/timer"
 
 export async function useResetGame() {
     // store init
@@ -44,8 +44,8 @@ export async function useResetGame() {
     // actual function stuff
     stopTimer()
     /** @type {HTMLElement} */
-    const nextRoundBtn = window.document.querySelector('.next-round-btn')
-    const resetGameBtn = window.document.querySelector('.reset-game-btn')
+    const nextRoundBtn = window.document.querySelector(".next-round-btn")
+    const resetGameBtn = window.document.querySelector(".reset-game-btn")
 
     nextRoundBtn.disabled = true
     nextRoundBtn.blur()

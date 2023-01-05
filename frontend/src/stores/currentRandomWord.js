@@ -1,12 +1,12 @@
-import { defineStore } from 'pinia'
-import { computed, reactive } from 'vue'
-import { fetchBackendWord } from '../functions/dataFetching'
+import { defineStore } from "pinia"
+import { computed, reactive } from "vue"
+import { fetchBackendWord } from "../functions/dataFetching"
 
-export const useCurRandomWord = defineStore('curRandomWord', () => {
+export const useCurRandomWord = defineStore("curRandomWord", () => {
     const currentRandomWord = reactive({
         shuffled_word: [],
         sub_words: [],
-        word: '',
+        word: "",
     })
 
     const backendDataFetched = computed(() => Boolean(currentRandomWord.word))
@@ -63,7 +63,7 @@ export const useCurRandomWord = defineStore('curRandomWord', () => {
     function clearCurrentRandomWordStore() {
         currentRandomWord.shuffled_word = []
         currentRandomWord.sub_words = []
-        currentRandomWord.word = ''
+        currentRandomWord.word = ""
     }
 
     function revealYourSecrets() {
