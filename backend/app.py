@@ -15,6 +15,7 @@ def main():
 
 
 @app.route("/")
+@cross_origin(origins=["*"])
 def index():
     return render_template("index.html")
 
