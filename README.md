@@ -1,8 +1,3 @@
-# a-0.085 TODO's
-
-- refactor fetch (it automatically uses the base URL)
-- remove `app.py` `jsonify`
-
 # IMPORTANT! (issues regarding python)
 
 - ensure that vscode always selects the venv python binary (`venv/bin/python` in linux, `venv/Scripts/python` for windows)
