@@ -17,6 +17,7 @@ export async function fetchBackendWord(gameSettings) {
         },
         body: JSON.stringify(gameSettings),
     })
+    if (!res.ok) throw new Error("backend error, either 4xx or 5xx")
     const py_resp = await res.json()
     return py_resp
 }
