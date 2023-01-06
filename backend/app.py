@@ -14,6 +14,9 @@ def main():
     return english_dictionary.EnglishDict(all_dict_data)
 
 
+eng_dict = main()
+
+
 @app.route("/")
 @cross_origin(origins=["*"])
 def index():
@@ -29,8 +32,8 @@ def api_test():
 @app.route("/api/random_word", methods=["GET"])
 @cross_origin(origins=["*"])
 def test_random_word():
-    engdict2 = main()
-    return engdict2.get_random_word()
+    eng_dict = main()
+    return eng_dict.get_random_word()
 
 
 @app.route("/api/random_word", methods=["POST"])
@@ -54,7 +57,6 @@ def get_random_word():
     Returns:
         dict: {'word': random_word, 'sub_words': sub_words}
     """
-
     params = {}
     params: dict = request.json
 
@@ -99,5 +101,5 @@ def get_random_word():
 
 
 if __name__ == "__main__":
-    eng_dict = main()
+    # eng_dict = main()
     app.run(debug=True)
