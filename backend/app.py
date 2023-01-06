@@ -1,7 +1,7 @@
 import random
 import uuid
 
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, render_template, request
 from flask_cors import cross_origin
 from utils import english_dictionary, game_settings, json_utils
 
@@ -32,7 +32,6 @@ def api_test():
 @app.route("/api/random_word", methods=["GET"])
 @cross_origin(origins=["*"])
 def test_random_word():
-    eng_dict = main()
     return eng_dict.get_random_word()
 
 
@@ -91,15 +90,12 @@ def get_random_word():
     ]
     random.shuffle(shuffled_word)
 
-    return jsonify(
-        {
-            "word": rand_word,
-            "sub_words": sub_words,
-            "shuffled_word": shuffled_word,
-        }
-    )
+    return {
+        "word": rand_word,
+        "sub_words": sub_words,
+        "shuffled_word": shuffled_word,
+    }
 
 
 if __name__ == "__main__":
-    # eng_dict = main()
     app.run(debug=True)
