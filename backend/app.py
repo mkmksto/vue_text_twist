@@ -26,6 +26,12 @@ def api_test():
     return {"api": "test"}
 
 
+@app.route("/api/random_word", methods=["GET"])
+@cross_origin(origins=["*"])
+def test_random_word():
+    return eng_dict.get_random_word()
+
+
 @app.route("/api/random_word", methods=["POST"])
 @cross_origin(origins=["*"])
 # @cross_origin(
