@@ -6,13 +6,13 @@ import { useCurRandomWord } from "../stores/currentRandomWord"
 import { useSettingsStore } from "../stores/gameSettings"
 
 const settingStore = useSettingsStore()
-const { gameSettings } = storeToRefs(settingStore)
+const { gameSettings } = settingStore
 
 const randomWordStore = useCurRandomWord()
 const { currentRandomWord } = storeToRefs(randomWordStore)
 
 onMounted(async () => {
-    const backend_resp = await fetchBackendWord(gameSettings.value)
+    const backend_resp = await fetchBackendWord(gameSettings)
 
     randomWordStore.$patch({
         currentRandomWord: {
