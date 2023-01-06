@@ -5,7 +5,7 @@
  */
 export async function fetchBackendWord(gameSettings) {
     const fetchUrl = window.location.href.includes("vercel")
-        ? `${window.location.href}/api/random_word`
+        ? `${window.location.href}api/random_word`
         : "http://127.0.0.1:5000/api/random_word"
     console.log(fetchUrl)
     const res = await fetch(fetchUrl, {

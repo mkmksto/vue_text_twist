@@ -1,26 +1,29 @@
 <script setup>
 import { storeToRefs } from "pinia"
 import { onMounted } from "vue"
-import { fetchBackendWord } from "../functions/dataFetching"
 import { useCurRandomWord } from "../stores/currentRandomWord"
 import { useSettingsStore } from "../stores/gameSettings"
 
 const settingStore = useSettingsStore()
-const { gameSettings } = settingStore
+const { gameSettings } = storeToRefs(settingStore)
 
 const randomWordStore = useCurRandomWord()
 const { currentRandomWord } = storeToRefs(randomWordStore)
+const { renewCurrentRandomWordStore } = randomWordStore
 
 onMounted(async () => {
-    const backend_resp = await fetchBackendWord(gameSettings)
+    console.log("game settings: ", gameSettings)
+    // const backend_resp = await fetchBackendWord(gameSettings)
 
-    randomWordStore.$patch({
-        currentRandomWord: {
-            shuffled_word: backend_resp.shuffled_word,
-            sub_words: backend_resp.sub_words,
-            word: backend_resp.word,
-        },
-    })
+    // randomWordStore.$patch({
+    //     currentRandomWord: {
+    //         shuffled_word: backend_resp.shuffled_word,
+    //         sub_words: backend_resp.sub_words,
+    //         word: backend_resp.word,
+    //     },
+    // })
+
+    renewCurrentRandomWordStore(gameSettings.value)
 })
 </script>
 
