@@ -23,6 +23,7 @@
 
 - ensure `black is installed` from the pip install step
 - if black doesn't format on save, check if vscode is detecting the proper interpreter path (had a case of black not formatting because vscode couldn't find the path to the interpreter)
+- double quotes. See [black docs](https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html#strings)
 
 # Configuring black
 
