@@ -8,8 +8,7 @@ The Flask backend works in a very similar way to the backend of my Wordle app, e
 
 - [x] Countdown Timer
 - [x] Dynamic scoring based on word length
-- [x] Word validation through backend that compares words against a much larger dictionary (i.e. as opposed to most clones that only compare against a list of 10000 words)
-- [x] Word validation through backend that compares words against a much larger dictionary
+- [x] Word validation through backend that compares words against a large dictionary
 - [x] Word validation based on frequency of use
 - [x] Shuffle and Shuffle animation
 - [x] Skipping to the next round if the longest word has been guessed
