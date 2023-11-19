@@ -1,8 +1,18 @@
-# IMPORTANT! (issues regarding python)
+# Vue Text Twist
 
-- ensure that vscode always selects the venv python binary (`venv/bin/python` in linux, `venv/Scripts/python` for windows)
-- also ensure that `pylint` is installed inside the venv, also check pylint's path inside workspace settings
-- if in doubt, just checked the root folder's `.vscode` folder
+Full-stack Clone of the popular word game `Text Twist` using Vue on the frontend and Flask on the backend.
+
+The Flask backend works in a very similar way to the backend of my Wordle app, except written in python.
+
+# Features
+
+- [x] Countdown Timer
+- [x] Dynamic scoring based on word length
+- [x] Word validation through backend that compares words against a much larger dictionary (i.e. as opposed to most clones that only compare against a list of 10000 words)
+- [x] Word validation through backend that compares words against a much larger dictionary
+- [x] Word validation based on frequency of use
+- [x] Shuffle and Shuffle animation
+- [x] Skipping to the next round if the longest word has been guessed
 
 # Installation instructions
 
@@ -37,23 +47,8 @@
 - would then run a series of shell commands to copy the `html`, `css` and `js` files from `frontend/dist` to the proper flask folders
 - last script is a shell script to rename the `css`'s href and the `js` src to point to the proper flask folders using `sed` (some sort of shell regex i suppose)
 
-# Misc TODO's
+## Vscode Notes
 
-- create a computed promise (?) that resolves when the data from the backend has been fetched, you can maybe await this before doing stuff
-
-# Roadmap
-
-- ! FIX: change the code for `Subwords`. The current code shows the words if i use dark reader. Simply don't include the letter if the word has not yet been guessed.
-- ESC key exits settings modal
-- option to change settings on game lost
-
-- try to check if using dot notation for store functions does work(inspired by svelte stores)
-- ! PRACTICE refactoring (creating some retarded branch then name you variables and functions better!)
-- also practice git then
-- refactor your stores (and their methods) to have a `$` at the end of their names (to indicate that they actually are store), also to differentiate from local variables and refs
-- extract the lines @ `app.py` involved in creating the final `sub_words` and `shuffled_word` props
-- test commit
-
-# Future TODO's
-
-- persist scores inside localStorage? create a modal that shows maybe your top 5 highest score, and when u got that score
+- ensure that vscode always selects the venv python binary (`venv/bin/python` in linux, `venv/Scripts/python` for windows)
+- also ensure that `pylint` is installed inside the venv, also check pylint's path inside workspace settings
+- if in doubt, just checked the root folder's `.vscode` folder
